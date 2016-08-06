@@ -1,19 +1,6 @@
 #API http://zuyin.tech/
 
-
-[POST] http://zuyin.tech/addPin
-```json
-{
-"_id" :  "57a648c4c439a7413277a9ae",
-"title" : "MyFirstPinTEST" ,
-"message" : "YAY GO" ,
-"userId" : 1 ,
-"tags" : [ "A" , "B"] ,
-"location" : { "lat" : 1.5453 , "lon" : 2.345} ,
-}
-```
-
-[GET] http://zuyin.tech/addPins
+[GET] http://zuyin.tech/api/addPins
 ```json
 [
 {
@@ -29,6 +16,18 @@
 { ... },
 { ... }
 ]
+```
+
+[POST] http://zuyin.tech/api/addPin
+```json
+{
+"_id" :  "57a648c4c439a7413277a9ae",
+"title" : "MyFirstPinTEST" ,
+"message" : "YAY GO" ,
+"userId" : 1 ,
+"tags" : [ "A" , "B"] ,
+"location" : { "lat" : 1.5453 , "lon" : 2.345} ,
+}
 ```
 
 [POST] zuyin.tech:80/api/likePin
