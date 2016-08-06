@@ -13,7 +13,7 @@ module.exports.addPin = function (req, res, next) {
 
 module.exports.getPins = function (req, res, next) {
 	db.getPins().then(function (pins) {
-		sendResult(res, pins);
+		sendResult(res, getWorkingPins(pins));
 	}).fail(function (err) {
 		sendError(res, err);
 	});
@@ -35,7 +35,7 @@ module.exports.getPinsByLocation = function (req, res, next) {
 		//     }
 		// }
 		// sendResult(res, resultPins);
-		sendResult(res, pins);
+		sendResult(res, getWorkingPins(pins));
 	}).fail(function (err) {
 		sendError(res, err);
 	});
@@ -44,7 +44,7 @@ module.exports.getPinsByTag = function (req, res, next) {
 	var tag = params.body;
 	
 	db.getPinsByTag(tag).then(function (pins) {
-		sendResult(res, pins);
+		sendResult(res, getWorkingPins(pins));
 	}).fail(function (err) {
 		sendError(res, err);
 	});
@@ -89,11 +89,24 @@ module.exports.unlikePin = function (req, res, next) {
 function sendResult (res, result) {
 	res.status(200).send(result);
 }
-
 function sendError (res, message) {
 	res.status(500).send(message);
 }
-
-function checkPin() {
-
+function getWorkingPins (pins) {
+	var workingPins = [];
+	for (var i = 0; i < pins; i++) {
+		var pin = pins[i];
+		if (checkPin(pin)) {
+			workingPins.push(pin);
+		}
+	}
+	return workingPins;
+}
+function checkPin(pin) {
+	return pin.userId
+		&& pin.message
+		&& pin.message
+		&& pin.location
+		&& pin.location.lat
+		&& pin.location.lon;
 }
