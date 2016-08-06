@@ -105,7 +105,7 @@ function addPinFormPopUp (Lat, Lon) {
 					"message": $('#newPinFormMessage').val(),
 					"location": {"lat":Lat,"lon":Lon},
 					"tags": tagsArray,
-					"user_id": $('newPinFormID').val() //MUST BE CHANGED WITH USER ID
+					"user_id": $('#newPinFormID').val() //MUST BE CHANGED WITH USER ID
 			};
 
 			$('#newPinFormTags').val('');
