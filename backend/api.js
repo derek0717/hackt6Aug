@@ -44,7 +44,7 @@ module.exports.getPinsByLocation = function (req, res, next) {
     });
 }
 module.exports.getPinsByTag = function (req, res, next) {
-    var tag = getPinsByTag.body;
+    var tag = req.body;
 
     // db.getPinsByTag(tag).then(function (pins) {
     // 	sendResult(res, getWorkingPins(pins));
