@@ -45,18 +45,18 @@ module.exports.getPinsByLocation = function (req, res, next) {
 };
 module.exports.getPinsByTag = function (req, res, next) {
     var tag = req.body.tag;
+    tag = tag.toLowerCase();
 
-    // db.getPinsByTag(tag).then(function (pins) {
-    // 	sendResult(res, getWorkingPins(pins));
-    // }).fail(function (err) {
-    // 	sendError(res, err);
-    // });
     db.getPins().then(function (pins) {
         var resultPins = [];
         for (var i = 0; i < pins.length; i++) {
             var pin = pins[i];
-            if (pin.tags.indexOf(tag) > -1) {
-                resultPins.push(pin);
+            for (var j = 0; j < pin.tags.length; j++) {
+                var pinTag = pin.tags[j];
+                if (pinTag.toLowerCase() == tag) {
+                    resultPins.push(pin);
+                    break;
+                }
             }
         }
         sendResult(res, getWorkingPins(resultPins));
