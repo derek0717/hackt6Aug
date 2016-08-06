@@ -92,20 +92,20 @@ function getLocation() {
 		console.log("grabbing location");
 }
 function showError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-        case error.TIMEOUT:
-            alert("The request to get user location timed out.");
-            break;
-        case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.");
-            break;
-    }
+		switch(error.code) {
+				case error.PERMISSION_DENIED:
+						alert("User denied the request for Geolocation.");
+						break;
+				case error.POSITION_UNAVAILABLE:
+						alert("Location information is unavailable.");
+						break;
+				case error.TIMEOUT:
+						alert("The request to get user location timed out.");
+						break;
+				case error.UNKNOWN_ERROR:
+						alert("An unknown error occurred.");
+						break;
+		}
 }
 
 //SHOW CURRENT POSITION
@@ -231,7 +231,7 @@ function readJsonAndCreateAllPins(justThePins){
 	for(var i=0,l=justThePins.length;i<l;i++) {
 			 //console.log(d[i].location);
 			 //addNewPin(justThePins[i].location.lat,justThePins[i].location.lon);
-			 addNewPinFromJSON(justThePins[i]);
+			 addPinFromJSON(justThePins[i]);
 		}
 }
 
