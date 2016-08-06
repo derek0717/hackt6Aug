@@ -11,7 +11,7 @@ getPinsByTags : Array[Pin]
 
 getPinsByLocation : Array[Pin]
 - location : x, y
-- distance : float
+- radius : float
 
 likePin : null
 - userId : string

@@ -12,20 +12,29 @@ module.exports.addPin = function (req, res, next) {
     res.status(200).send(req.body);
 }
 module.exports.getPinsByTags = function (req, res, next) {
-    console.log(db.getAllPins()[0]);
-    res.status(200).send(req.body);
-    // var params = rea.params; // wrong
-    // var tags = params.tags;
-    // var pins = getAllPins();
+    // console.log(db.getAllPins()[0]);
+    // res.status(200).send(req.body);
+    var params = rea.body;
+    var tags = params.tags;
+    var allPins = getAllPins();
 
-    // var resultTags = [];
-    // for (var i = 0; i < pins.length; i++) {
-    //     var pin = pins[i];
-    //     for (var j = 0; j < tags.length; j++) {
-    //         var tag = tags[i];
-    //         if (pin.tags.indexOf(tag) > -1) {
-    //             resultTags.push(pin);
-    //         }
-    //     }
-    // }
+    var resultPins = [];
+    for (var i = 0; i < allPins.length; i++) {
+        var pin = allPins[i];
+        for (var j = 0; j < tags.length; j++) {
+            var tag = tags[i];
+            if (pin.tags.indexOf(tag) > -1) {
+                resultTags.push(pin);
+            }
+        }
+    }
+
+    sendResult(resultPins);
 };
+
+function sendResult (res, result) {
+    res.status(200).send(result);
+}
+function sendError (res, message) {
+    res.status(500).send(message);
+}
