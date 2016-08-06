@@ -1,6 +1,7 @@
+const os = require("os");
+
 module.exports.getConfig = function () {
-    var isLive = true;
-    if (isLive) {
+    if (os.type() == "Linux") {
         return {
             "port": 80,
             "dbHost": "127.0.0.1",
