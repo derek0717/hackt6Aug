@@ -127,7 +127,7 @@ function createPin(row) {
 
     pin.title = row.title;
     pin.message = row.message;
-    pin.location = {lat: parseInt(row.lat), lon: parseInt(row.lon)};
+    pin.location = {lat: row.lat * 1, lon: row.lon * 1};
     pin.tags = [];
     pin.userId = row.userId;
 
