@@ -2,7 +2,6 @@ var testThePins
 
 var theMainURL = "http://192.168.11.179:8888";
 // -> /getPins returns an array of pins
-var getLocalPins = '/database/testing.json';
 
 function get(url) {
 
@@ -18,7 +17,7 @@ function get(url) {
 		req.onload = function() {
 			// This is called even on 404 etc
 			// so check the status
-			if (req.status == 200 || req.status == 304) {
+			if (req.status == 200/* || req.status == 304*/) {
 				// Resolve the promise with the response text
 				resolve(req.response);
 			}
@@ -39,6 +38,15 @@ function get(url) {
 	});
 }
 
+function push(url) {
+	return new Promise(function(resolve, reject) {
+
+		var req = new XMLHttpRequest();
+		req.open('GET', theMainURL+'/addPin');
+		req.send(JSON.stringify(testThePins));
+	});
+}
+
 
 get(theMainURL+'/getPins').then(JSON.parse).then(function (response) {
 	var localJSON = response;
@@ -56,3 +64,13 @@ function addtoJSON () {
 //}, function(error) {
 //  console.error("Failed!", error);
 //});
+
+$(document).on("keypress", function (e) {
+		console.log(e.which);
+		switch(e.which) {
+			case 112:
+
+						break;
+			default:
+		}
+})
