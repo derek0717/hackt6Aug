@@ -29,10 +29,21 @@ var pinSchema = new mongoose.Schema({
     userId: {
         type: Number,
         index: false
+    },
+    likes: {
+        type: Number,
+        index: false
+    },
+    dislikes: {
+        type: Number,
+        index: false
     }
 });
 
 module.exports.addPin = function (pin) {
+
+    pin.likes = 0;
+    pin.dislikes = 0;
 
     var deferred = Q.defer();
     var model = mongoose.model('pins', pinSchema);
@@ -69,13 +80,28 @@ module.exports.getPins = function () {
     return deferred.promise;
 };
 
-
-module.exports.getPinsByTag = function (tag) {
-
+function modifyLikes(pinId, obj) {
     var deferred = Q.defer();
-
-
+    var model = mongoose.model('pins', pinSchema);
+    var res = model.update(
+        {_id: pinId},
+        {$inc: obj}, function (err, doc) {
+            if (err) {
+                deferred.reject();
+            } else {
+                deferred.resolve();
+            }
+        }
+    );
     return deferred.promise;
+}
+
+module.exports.likePin = function (pinId) {
+    return modifyLikes(pinId, { likes: 1 });
+};
+
+module.exports.unlikePin = function (pinId) {
+    return modifyLikes(pinId, { dislikes: 1 });
 };
 
 

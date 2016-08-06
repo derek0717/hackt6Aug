@@ -67,11 +67,10 @@ module.exports.getPinsByTag = function (req, res, next) {
 module.exports.likePin = function (req, res, next) {
     var params = req.body;
 
-    var userId = params.userId;
     var pinId = params.pinId;
 
-    db.addPinLike(pinId).then(function () {
-        sendResult(res, {});
+    db.likePin(pinId).then(function () {
+        sendResult(res, null);
     }).fail(function (err) {
         sendError(res, err);
     });
@@ -79,11 +78,10 @@ module.exports.likePin = function (req, res, next) {
 module.exports.unlikePin = function (req, res, next) {
     var params = req.body;
 
-    var userId = params.userId;
     var pinId = params.pinId;
 
-    db.addPinUnlike(pinId).then(function () {
-        sendResult(res, {});
+    db.unlikePin(pinId).then(function () {
+        sendResult(res, null);
     }).fail(function (err) {
         sendError(res, err);
     });
