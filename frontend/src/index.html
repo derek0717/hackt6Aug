@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="styles/style.css">
+
+<!--google map-->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZ3qW0vIWD1uoQ4ViJzIj90bcMq1RKZ8k"></script>
+<script>
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
   </head>
   <body>
     <header></header>
-    <article></article>
+    <article>
+      <div id="gmap-wrapper"><div id="googleMap"></div></div>
+    </article>
     <footer></footer>
     <script src="js/all.js"></script>
   </body>
