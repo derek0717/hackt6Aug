@@ -1,15 +1,19 @@
 var db = require('./db');
-var db2 = require('./db2'); // wrong
+
 
 module.exports.addPin = function (req, res, next) {
-    var params = rea.body;
+    var params = req.body;
 
     var pin = params.pin;
 
-    db.addPin(pin);
+    db.addPin(pin).then(function (row) {
+        console.log(row);
+    }).fail(function (err) {
+        console.log(err);
+    });
 
-    sendResult(res);
-}
+};
+
 module.exports.getPinsByLocation = function (req, res, next) {
     var params = rea.body;
 
@@ -68,6 +72,7 @@ module.exports.unlikePin = function (req, res, next) {
 function sendResult (res, result = {}) {
     res.status(200).send(result);
 }
+
 function sendError (res, message = "") {
     res.status(500).send(message);
 }

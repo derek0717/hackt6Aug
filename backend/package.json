@@ -4,6 +4,7 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "~4.13.4",
-    "mariasql": "^0.2.6"
+    "mariasql": "^0.2.6",
+    "q": "^1.4.1"
   }
 }
