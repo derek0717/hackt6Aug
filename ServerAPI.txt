@@ -8,8 +8,8 @@ addPin : null
   - lon : float
 - tags : Array[string]
 
-getPinsByTags : Array[Pin]
-- tags : Array[string]
+getPinsByTag : Array[Pin]
+- tag : string
 
 getPinsByLocation : Array[Pin]
 - location : object
@@ -21,7 +21,7 @@ likePin : null
 - userId : string
 - pinId : string
 
-unLikePin : null
+unlikePin : null
 - userId : string
 - pinId : string
 
