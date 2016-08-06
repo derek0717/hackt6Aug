@@ -1,0 +1,32 @@
+Function:
+postPin : null
+- userId : string
+- title : string
+- content : string
+- location : x, y
+- tags : Array[string]
+
+getPinsByTags : Array[Pin]
+- tags : Array[string]
+
+getPinsByLocation : Array[Pin]
+- location : x, y
+- distance : float
+
+likePin : null
+- userId : string
+- pinId : string
+
+unLikePin : null
+- userId : string
+- pinId : string
+
+Class:
+Pin : object
+- userId : string
+- location : object
+  - lat : float
+  - lon : float
+- title : string
+- content : string
+- tags : Array[string]
