@@ -1,4 +1,4 @@
-var GlobalPinsJSON;
+var GlobalPinsJSON=[];
 
 //CUSTOM MARKER CODE (FROM GITHUB)
 function CustomMarker(latlng, map, args) {
@@ -20,11 +20,10 @@ CustomMarker.prototype.draw = function() {
 		div = this.div = document.createElement('div');
 
 		div.className = 'pin tag1';
-
 		div.style.position = 'absolute';
 
-		if (typeof(self.args.pin_id) !== 'undefined') {
-			div.dataset.pin_id = self.args.pin_id;
+		if (typeof(self.args.user_id) !== 'undefined') {
+			div.dataset.user_id = self.args.user_id;
 		}
 		if (typeof(self.args.title) !== 'undefined') {
 			div.dataset.title = self.args.title;
@@ -85,11 +84,27 @@ var map;
 //LOAD CURRENT POSITION
 function getLocation() {
 		if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(showPosition);
+				navigator.geolocation.getCurrentPosition(showPosition,showError);
 		} else {
 				console.log = "Geolocation is not supported by this browser.";
 		}
 		console.log("grabbing location");
+}
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+    }
 }
 
 //SHOW CURRENT POSITION
@@ -100,8 +115,8 @@ function showPosition(position) {
 
 	var marker = new google.maps.Marker({
 		position: myLatlng,
-		title:"Hello World!",
-		icon:"images/icon.png"
+		title:"you are here",
+		icon:"images/loc.png"
 	});
 	marker.setMap(map);
 	map.panTo(position);
@@ -136,7 +151,7 @@ function addPinFromJSON(singlePin) {
 		myLatlng,
 		map,
 		{
-			pin_id: ''+singlePin.title+'',
+			user_id: ''+singlePin.user_id+'',
 			title: ''+singlePin.title+'',
 			message: ''+singlePin.message+'',
 			lat:singlePin.location.lat,
@@ -232,5 +247,6 @@ function initialize() {
 	google.maps.event.addListener(map, 'click', function(e) {
 		placeMarker(e.latLng, map);
 	});
+	getLocation();
 }
 google.maps.event.addDomListener(window, 'load', initialize);
