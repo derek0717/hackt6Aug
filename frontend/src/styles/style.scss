@@ -8,15 +8,36 @@ body {
 }
 
 #gmap-wrapper{
-	width:100%;
-	height:100vh;
-	position:fixed;
-	transform: translate(-50%,-50%);
-	top:50%;
-	left:50%;
+    width:100%;
+    height:108vh;
+    position:fixed;
+    transform: translate(-50%,-50%);
+    top:50%;
+    left:50%;
+    z-index: 1;
 }
 
 #googleMap{
   width:100%;
   height:100%;
+}
+
+#locInner {
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+   background-color: black;
+
+}
+
+#locOuter {
+    position: fixed;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: color(100,100,100,0.3);
+    z-index: 20;
 }
