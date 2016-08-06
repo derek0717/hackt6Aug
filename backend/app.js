@@ -29,6 +29,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(router);
 
+
+app.use(express.static('../frontend/live-build'));
+
 router.post('/addPin', api.addPin);
 router.get('/getPins', api.getPins);
 router.post('/getPinsByLocation', api.getPinsByLocation);
