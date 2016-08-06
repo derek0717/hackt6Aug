@@ -2,14 +2,13 @@ var db = require('./db');
 
 
 module.exports.addPin = function (req, res, next) {
-    var params = req.body;
 
-    var pin = params.pin;
+    var pin = req.body;
 
     db.addPin(pin).then(function (row) {
-        sendResult(resultPins);
+        sendResult(res, row.insertId);
     }).fail(function (err) {
-        sendError(err);
+        sendError(res, err);
     });
 };
 
