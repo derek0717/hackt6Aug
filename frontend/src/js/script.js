@@ -1,11 +1,67 @@
+//CUSTOM MARKER CODE (FROM GITHUB)
+function CustomMarker(latlng, map, args) {
+	this.latlng = latlng;	
+	this.args = args;	
+	this.setMap(map);	
+}
+
+CustomMarker.prototype = new google.maps.OverlayView();
+
+CustomMarker.prototype.draw = function() {
+	
+	var self = this;
+	
+	var div = this.div;
+	
+	if (!div) {
+	
+		div = this.div = document.createElement('div');
+		
+		div.className = 'pin';
+		
+		div.style.position = 'absolute';
+		
+		if (typeof(self.args.pin_id) !== 'undefined') {
+			div.dataset.pin_id = self.args.pin_id;
+		}
+		
+		google.maps.event.addDomListener(div, "click", function(event) {			
+			google.maps.event.trigger(self, "click");
+			event.stopPropagation();
+			console.log(this);
+		});
+		
+		var panes = this.getPanes();
+		panes.overlayImage.appendChild(div);
+	}
+	
+	var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+	
+	if (point) {
+		div.style.left = point.x + 'px';
+		div.style.top = point.y + 'px';
+	}
+};
+
+CustomMarker.prototype.remove = function() {
+	if (this.div) {
+		this.div.parentNode.removeChild(this.div);
+		this.div = null;
+	}	
+};
+
+CustomMarker.prototype.getPosition = function() {
+	return this.latlng;	
+};
+/****/
 
 var map;
-
 /*var dummyPins={"pins":[
 		{"title":"title1", "message":"some text here.","location":{"lat":22.283636353214973,"lon":114.1349458694458},"tags":["A","B","C"],"user_id":"user1"},
 		{"title":"this is a title", "message":"Doe","location":{"lat":22.280181510711184,"lon":114.15121078491211},"tags":["A","B","C"],"user_id":"user1"},
 		{"title":"John", "message":"Doe","location":{"lat":22.290545782110424,"lon":114.14709091186523},"tags":["A","B","C"],"user_id":"user2"},
 ]};*/
+
 //LOAD CURRENT POSITION
 function getLocation() {
 		if (navigator.geolocation) {
@@ -27,7 +83,6 @@ function showPosition(position) {
 		title:"Hello World!",
 		icon:"images/icon.png"
 	});
-
 	marker.setMap(map);
 }
 
@@ -43,17 +98,39 @@ function addNewPin(lat,lon) {
 	});
 
 	marker.setMap(map);
-
+	marker.addListener('click', function(e) {
+		markerClick(this.LatLng);
+	});
 }
 
 //place marker on map; gets called by click event
-	function placeMarker(position) {
-		var marker = new google.maps.Marker({
-			position: position,
-			map: map
-		});
-		//map.panTo(position);
-	}
+function placeMarker(position) {
+	var marker = new google.maps.Marker({
+		position: position,
+		map: map
+	});
+	//map.panTo(position);
+	marker.addListener('click', function(e) {
+		markerClick(this.LatLng);
+	});
+
+	var overlay = new CustomMarker(
+		position, 
+		map,
+		{
+			pin_id: '123',
+			colour: 'Red'
+		}
+	);
+	overlay.addListener('click', function(e) {
+		markerClick(this.LatLng);
+	});
+}
+
+//
+function markerClick(latLng){
+	console.log("click");
+}
 
 //READ JSON AND CREATE ALL PINS
 function readJsonAndCreateAllPins(x){
