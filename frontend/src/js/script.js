@@ -1,3 +1,5 @@
+var GlobalPinsJSON;
+
 //CUSTOM MARKER CODE (FROM GITHUB)
 function CustomMarker(latlng, map, args) {
 	this.latlng = latlng;

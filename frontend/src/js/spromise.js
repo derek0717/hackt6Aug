@@ -1,10 +1,7 @@
-var testThePins
+
 
 var testPin1 = {"title":"title1", "message":"some text here.","location":{"lat":22.283636353214973,"lon":114.1349458694458},"tags":["A","B","C"],"user_id":"user1"};
-/*
-	{"title":"title1", "message":"some text here.","location":{"lat":22.283636353214973,"lon":114.1349458694458},"tags":["A","B","C"],"user_id":"user1"},
-		{"title":"this is a title", "message":"Doe","location":{"lat":22.280181510711184,"lon":114.15121078491211},"tags":["A","B","C"],"user_id":"user1"},
-		{"title":"John", "message":"Doe","location":{"lat":22.290545782110424,"lon":114.14709091186523},"tags":["A","B","C"],"user_id":"user2"},*/
+
 
 var theMainURL = "/api";
 // -> /getPins returns an array of pins
@@ -111,6 +108,9 @@ function addPinFormPopUp (Lat, Lon) {
 					"user_id": "test-user1" //MUST BE CHANGED WITH USER ID
 			};
 
+			$('#newPinFormTags').val('');
+			$('#newPinFormTitle').val('');
+			$('#newPinFormMessage').val('')
 			console.log(json);
 			toggleFormView();
 			push(JSON.stringify(json));
