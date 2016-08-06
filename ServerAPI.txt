@@ -3,14 +3,18 @@ addPin : null
 - userId : string
 - title : string
 - content : string
-- location : x, y
+- location : object
+  - lat : float
+  - lon : float
 - tags : Array[string]
 
 getPinsByTags : Array[Pin]
 - tags : Array[string]
 
 getPinsByLocation : Array[Pin]
-- location : x, y
+- location : object
+  - lat : float
+  - lon : float
 - radius : float
 
 likePin : null

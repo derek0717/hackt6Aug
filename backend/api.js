@@ -12,8 +12,6 @@ module.exports.addPin = function (req, res, next) {
     res.status(200).send(req.body);
 }
 module.exports.getPinsByTags = function (req, res, next) {
-    // console.log(db.getAllPins()[0]);
-    // res.status(200).send(req.body);
     var params = rea.body;
     var tags = params.tags;
     var allPins = getAllPins();
