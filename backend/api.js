@@ -15,7 +15,6 @@ module.exports.addPin = function (req, res, next) {
     }
 };
 
-
 module.exports.getPins = function (req, res, next) {
     db.getPins().then(function (pins) {
         sendResult(res, getWorkingPins(pins));
@@ -23,6 +22,7 @@ module.exports.getPins = function (req, res, next) {
         sendError(res, err);
     });
 };
+
 module.exports.getPinsByLocation = function (req, res, next) {
     var params = req.body;
 
@@ -43,6 +43,7 @@ module.exports.getPinsByLocation = function (req, res, next) {
         sendError(res, err);
     });
 };
+
 module.exports.getPinsByTag = function (req, res, next) {
     var tag = req.body.tag;
     tag = tag.toLowerCase();
@@ -64,6 +65,7 @@ module.exports.getPinsByTag = function (req, res, next) {
         sendError(res, err);
     });
 };
+
 module.exports.likePin = function (req, res, next) {
     var params = req.body;
 
@@ -75,6 +77,7 @@ module.exports.likePin = function (req, res, next) {
         sendError(res, err);
     });
 };
+
 module.exports.unlikePin = function (req, res, next) {
     var params = req.body;
 
@@ -84,13 +87,6 @@ module.exports.unlikePin = function (req, res, next) {
         sendResult(res, null);
     }).fail(function (err) {
         sendError(res, err);
-    });
-};
-module.exports.createDB = function (req, res, next) {
-    db.createDB().then(function () {
-        sendResult(res, "DB created");
-    }).fail(function (err) {
-        sendError(res, "DB not created:" + err);
     });
 };
 
@@ -106,6 +102,7 @@ function sendResult(res, result) {
 function sendError(res, message) {
     res.status(500).send(message);
 }
+
 function getWorkingPins(pins) {
     var workingPins = [];
     for (var i = 0; i < pins.length; i++) {
@@ -116,6 +113,7 @@ function getWorkingPins(pins) {
     }
     return workingPins;
 }
+
 function checkPin(pin) {
     return pin.userId
         && pin.title
