@@ -21,3 +21,11 @@ body {
   width:100%;
   height:100%;
 }
+
+.pin{
+  cursor:pointer;
+  width:80px;
+  height:80px;
+  border:1px solid blue;
+  transform: translate(-50%,-100%);
+}
