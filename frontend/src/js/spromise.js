@@ -46,7 +46,23 @@ function push(stringifiedJSON) {
 
 		var req = new XMLHttpRequest();
 		req.open('PUSH', theMainURL+'/addPin');
+			if (req.status == 200/* || req.status == 304*/) {
+				// Resolve the promise with the response text
+				resolve(req.response);
+			}
+			else {
+				// Otherwise reject with the status text
+				// which will hopefully be a meaningful error
+				reject(Error(req.statusText));
+			}
 
+
+		// Handle network errors
+		req.onerror = function() {
+			reject(Error("Network Error"));
+		};
+
+		// Make the request
 		req.send(stringifiedJSON);
 	});
 }
@@ -55,7 +71,7 @@ function push(stringifiedJSON) {
 get(theMainURL+'/getPins').then(JSON.parse).then(function (response) {
 	var localJSON = response;
 	testThePins = response; // for testing only
-//	console.log(localJSON);
+	console.log(localJSON);
 	readJsonAndCreateAllPins(response);
 });
 
@@ -86,7 +102,10 @@ $(document).on("keypress", function (e) {
 ///FORM SUBMISSION
 //
 //hides form if clicked outside form
-$('#formBackground').on('click', function (e) {toggleFormView()});
+$('#formBackground').on('click', function (e) {
+	$('#addPinFormWrap').addClass('hide');
+	$('#formBackground').addClass('hide');
+});
 
 function toggleFormView() {
 	$('#addPinFormWrap').toggleClass('hide');
@@ -95,7 +114,8 @@ function toggleFormView() {
 
 
 function addPinFormPopUp (Lat, Lon) {
-	toggleFormView();
+	$('#addPinFormWrap').removeClass('hide');
+	$('#formBackground').removeClass('hide');
 	$('#newPinButton').on('click', function (e) {
 
 		var Tags = $('#newPinFormTags').val();
@@ -107,13 +127,13 @@ function addPinFormPopUp (Lat, Lon) {
 					"tags": tagsArray,
 					"user_id": $('#newPinFormID').val() //MUST BE CHANGED WITH USER ID
 			};
-
+			$('#addPinFormWrap').addClass('hide');
+			$('#formBackground').addClass('hide');
 			$('#newPinFormTags').val('');
 			$('#newPinFormTitle').val('');
 			$('#newPinFormMessage').val('')
-			console.log(json);
-			toggleFormView();
-			push(JSON.stringify(json));
+//			console.log(json);
+			//push(JSON.stringify(json));
 			GlobalPinsJSON.push(json);
 			addPinFromJSON(json);
 		});
