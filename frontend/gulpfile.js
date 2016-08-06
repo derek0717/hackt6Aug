@@ -39,7 +39,7 @@ var browserSync = require('browser-sync').create();
 var SCRIPTS_PATH = 'src/js/{libs,**}/*.js',
 	HTML_PATH = 'src/{*.html,**/*.html}',
 	IMG_PATH = 'src/**/images/*.{png,jpeg,jpg,gif,svg}',
-	SCSS_PATH = 'src/styles/**/*.scss',
+	SCSS_PATH = 'src/styles/{reset,**}/*.scss',
 	AUD_PATH = 'src/audio/*.mp3';
 //	CSS_PATH = 'src/css/**/*.css', /*No Longer needed as styles are created in SASS*/ */
 
