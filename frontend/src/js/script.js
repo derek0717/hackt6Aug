@@ -109,13 +109,48 @@ function addNewPin(lat,lon) {
 	});
 }
 
+function addNewPinFromJSON(singlePin) {
+	//console.log("Add pin: Latitude: " + lat + " Longitude: " + lon);
+	//var myLatlng=new google.maps.LatLng(singlePin.location.lat,singlePin.location.lon);
+
+//	var myLatlng=new google.maps.LatLng(22.283636353214973,114.1349458694458);
+
+	/*var marker = new google.maps.Marker({
+		position: myLatlng,
+		title:"added pin"
+	});
+
+	marker.setMap(map);
+	marker.addListener('click', function(e) {
+		markerClick(this.LatLng);
+	});*/
+
+	/*var overlay = new CustomMarker(
+		position:myLatlng, 
+		map,
+		{
+			pin_id: ''+singlePin.title+'',
+			title: ''+singlePin.title+'',
+			message: ''+singlePin.message+''
+		}
+	);
+	overlay.addListener('click', function(e) {
+		markerClick(this.LatLng);
+	});*/
+}
+var lastAddPin;
 //place marker on map; gets called by click event
 function placeMarker(position) {
 	var marker = new google.maps.Marker({
 		position: position,
-		map: map
+		map: map,
+		icon:'images/icon.png'
 	});
 	map.panTo(position);
+
+	//CALL POPUP FORM HERE
+
+	/*
 	marker.addListener('click', function(e) {
 		markerClick(this.LatLng);
 	});
@@ -132,6 +167,7 @@ function placeMarker(position) {
 	overlay.addListener('click', function(e) {
 		markerClick(this.LatLng);
 	});
+	*/
 }
 
 //
@@ -143,7 +179,8 @@ function markerClick(latLng){
 function readJsonAndCreateAllPins(justThePins){
 	for(var i=0,l=justThePins.length;i<l;i++) {
 			 //console.log(d[i].location);
-			 addNewPin(justThePins[i].location.lat,justThePins[i].location.lon);
+			 //addNewPin(justThePins[i].location.lat,justThePins[i].location.lon);
+			 addNewPinFromJSON(justThePins[i]);
 		}
 }
 
