@@ -5,9 +5,15 @@ module.exports.addPin = function (pin) {
 
     var deferred = Q.defer();
 
-    execute('INSERT INTO pin (title, name, userId, lat, lon) ' +
-        'VALUES (:title, :name, : userId, :lat, :lon)',
-        {name: pin.name},
+    executeParam('INSERT INTO pin (title, message, lat, lon, userId) ' +
+        'VALUES (:title, :message, :lat, :lon, :userId)',
+        {
+            title: pin.title,
+            message: pin.message,
+            lat: pin.location.lat,
+            lon: pin.location.lon,
+            userId: pin.userId
+        },
         function (err, rows) {
             if (err) {
                 deferred.reject(err);
@@ -70,7 +76,7 @@ function getAllPins(cb) {
         'FROM pin', cb);
 }
 
-function execute(query, param, cb) {
+function executeParam(query, param, cb) {
     c = connect();
     c.query(query, param, cb);
     c.end();

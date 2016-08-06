@@ -98,7 +98,7 @@ function sendError (res, message) {
 }
 function getWorkingPins (pins) {
 	var workingPins = [];
-	for (var i = 0; i < pins; i++) {
+	for (var i = 0; i < pins.length; i++) {
 		var pin = pins[i];
 		if (checkPin(pin)) {
 			workingPins.push(pin);
