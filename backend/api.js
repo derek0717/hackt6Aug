@@ -27,10 +27,10 @@ module.exports.getPinsByLocation = function (req, res, next) {
         //         resultPins.push(pin);
         //     }
         // }
-        // sendResult(resultPins);
-        sendResult(allPins);
+        // sendResult(res, resultPins);
+        sendResult(res, allPins);
     }).fail(function (err) {
-        sendError(err);
+        sendError(res, err);
     });
 }
 module.exports.getPinsByTag = function (req, res, next) {
@@ -46,9 +46,9 @@ module.exports.getPinsByTag = function (req, res, next) {
                 resultPins.push(pin);
             }
         }
-        sendResult(resultPins);
+        sendResult(res, resultPins);
     }).fail(function (err) {
-        sendError(err);
+        sendError(res, err);
     });
 };
 module.exports.likePin = function (req, res, next) {
@@ -58,9 +58,9 @@ module.exports.likePin = function (req, res, next) {
     var pinId = params.parId;
 
     db.addPinLike(pinId).then(function () {
-        sendResult({});
+        sendResult(res, {});
     }).fail(function (err) {
-        sendError(err);
+        sendError(res, err);
     });
 }
 module.exports.unlikePin = function (req, res, next) {
@@ -70,9 +70,9 @@ module.exports.unlikePin = function (req, res, next) {
     var pinId = params.parId;
 
     db.addPinUnlike(pinId).then(function () {
-        sendResult({});
+        sendResult(res, {});
     }).fail(function (err) {
-        sendError(err);
+        sendError(res, err);
     });
 }
 
