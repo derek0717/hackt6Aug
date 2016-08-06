@@ -4,8 +4,8 @@ var utils = require('./utils');
 module.exports.addPin = function (req, res, next) {
     var pin = req.body;
     if (checkPin(pin)) {
-        db.addPin(pin).then(function (row) {
-            sendResult(res, row.insertId);
+        db.addPin(pin).then(function () {
+            sendResult(res, null);
         }).fail(function (err) {
             sendError(res, err);
         });
@@ -14,6 +14,8 @@ module.exports.addPin = function (req, res, next) {
         sendError(res, "bad pin");
     }
 };
+
+
 module.exports.getPins = function (req, res, next) {
     db.getPins().then(function (pins) {
         sendResult(res, getWorkingPins(pins));
@@ -93,9 +95,16 @@ module.exports.createDB = function (req, res, next) {
         sendError(res, "DB not created:" + err);
     });
 };
+
 function sendResult(res, result) {
-    res.status(200).send(result);
+    if (result) {
+        res.status(200).send(result);
+    }
+    else {
+        res.status(200).send();
+    }
 }
+
 function sendError(res, message) {
     res.status(500).send(message);
 }
