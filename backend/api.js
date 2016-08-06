@@ -1,5 +1,5 @@
 var db = require('./db');
-
+var utils = require('./utils');
 
 module.exports.addPin = function (req, res, next) {
 	var pin = req.body;
@@ -30,15 +30,14 @@ module.exports.getPinsByLocation = function (req, res, next) {
 	var radius = params.radius;
 
 	db.getPins().then(function (pins) {
-		// var resultPins = [];
-		// for (var i = 0; i < allPins.length; i++) {
-		//     var pin = allPins[i];
-		//     var d = db2.getd(pinLocation, location); // wrong
-		//     if (d <= radius) {
-		//         resultPins.push(pin);
-		//     }
-		// }
-		// sendResult(res, resultPins);
+		var resultPins = [];
+		for (var i = 0; i < allPins.length; i++) {
+		    var pin = allPins[i];
+		    var d = utils.calculateCircleDistance(pin.location, location);
+		    if (d <= radius) {
+		        resultPins.push(pin);
+		    }
+		}
 		sendResult(res, getWorkingPins(pins));
 	}).fail(function (err) {
 		sendError(res, err);
