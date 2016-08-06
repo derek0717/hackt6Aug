@@ -1,5 +1,7 @@
 var Q = require('q');
 var Client = require('mariasql');
+var config = require('./config');
+
 
 module.exports.addPin = function (pin) {
 
@@ -56,7 +58,7 @@ module.exports.getPinsByTag = function (tag) {
         'pin.userId, ' +
         'pin.lat, ' +
         'pin.lon ' +
-        'FROM pin',function (err, rows) {
+        'FROM pin', function (err, rows) {
         if (err) {
             deferred.reject(err);
         } else {
@@ -95,13 +97,18 @@ function execute(query, cb) {
     c.end();
 }
 
+
 function connect() {
     var c = new Client();
+
+
+    var conf = config.getConfig();
+
     c.connect({
-        host: '127.0.0.1',
-        user: 'root',
-        password: 'toor',
-        db: 'zuyin'
+        host: conf.dbHost,
+        user: conf.dbUser,
+        password: conf.dbPass,
+        db: conf.dbName
     });
     c.on('connect', function () {
         console.log('Client connected');
@@ -126,3 +133,84 @@ function createPin(row) {
 
     return pin;
 }
+
+module.exports.createDB = function () {
+    var conf = config.getConfig();
+    var deferred = Q.defer();
+
+    var c = new Client();
+    c.connect({
+        host: conf.dbHost,
+        user: conf.dbUser,
+        password: conf.dbPass
+    });
+
+
+    c.query("CREATE DATABASE IF NOT EXISTS " + conf.dbName + ";", function (err, rows) {
+        if (err) {
+            c.end();
+            deferred.reject(err);
+        } else {
+            c.end();
+
+            var d = new Client();
+            d.connect({
+                host: conf.dbHost,
+                user: conf.dbUser,
+                password: conf.dbPass,
+                db: conf.dbName
+            });
+
+            d.query("CREATE TABLE IF NOT EXISTS pin (" +
+                "id int(11) NOT NULL AUTO_INCREMENT, " +
+                "title varchar(50), " +
+                "message varchar(512), " +
+                "userId int(11), " +
+                "lat DOUBLE, " +
+                "lon DOUBLE, " +
+                "PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8;", function (err, rows) {
+                if (err) {
+                    d.end();
+                    deferred.reject(err);
+                } else {
+                    d.query("CREATE TABLE IF NOT EXISTS tag (" +
+                        "id int(11) NOT NULL AUTO_INCREMENT, " +
+                        "name varchar(100), " +
+                        "PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8;", function (err, rows) {
+                        if (err) {
+                            d.end();
+                            deferred.reject(err);
+                        } else {
+                            d.query("CREATE TABLE IF NOT EXISTS pin_tag (" +
+                                "pinId int(11), " +
+                                "tagId int(11) " +
+                                ") ENGINE=InnoDB  DEFAULT CHARSET=utf8;", function (err, rows) {
+                                if (err) {
+                                    d.end();
+                                    deferred.reject(err);
+                                } else {
+                                    d.query("CREATE TABLE IF NOT EXISTS user (" +
+                                        "id int(11) NOT NULL AUTO_INCREMENT, " +
+                                        "name varchar(100), " +
+                                        "passwordHash char(32), " +
+                                        "PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8;", function (err, rows) {
+                                        if (err) {
+                                            d.end();
+                                            deferred.reject(err);
+                                        } else {
+                                            d.end();
+                                            deferred.resolve(rows);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+    return deferred.promise;
+};
+
