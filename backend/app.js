@@ -37,4 +37,4 @@ router.post('/likePin', api.likePin);
 router.post('/unlikePin', api.unlikePin);
 
 var server = require('http').createServer(app);
-server.listen(8888);
+server.listen(80);

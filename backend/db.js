@@ -49,7 +49,14 @@ module.exports.getPinsByTag = function (tag) {
 
     var deferred = Q.defer();
 
-    getAllPins(function (err, rows) {
+    execute('SELECT ' +
+        'pin.id, ' +
+        'pin.title, ' +
+        'pin.message, ' +
+        'pin.userId, ' +
+        'pin.lat, ' +
+        'pin.lon ' +
+        'FROM pin',function (err, rows) {
         if (err) {
             deferred.reject(err);
         } else {
