@@ -1,5 +1,5 @@
 var express = require('express');
-var api = require('api');
+var api = require('./api');
 
 var app = express(),
     router 	= express.Router();
