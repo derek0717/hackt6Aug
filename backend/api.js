@@ -14,15 +14,13 @@ module.exports.addPin = function (req, res, next) {
         sendError(res, "bad pin");
     }
 };
-
 module.exports.getPins = function (req, res, next) {
     db.getPins().then(function (pins) {
         sendResult(res, getWorkingPins(pins));
     }).fail(function (err) {
         sendError(res, err);
     });
-}
-
+};
 module.exports.getPinsByLocation = function (req, res, next) {
     var params = req.body;
 
@@ -42,15 +40,14 @@ module.exports.getPinsByLocation = function (req, res, next) {
     }).fail(function (err) {
         sendError(res, err);
     });
-}
-module.exports.getPinsByTag = function (req, res, next) {
+};
     db.getPins().then(function (pins) {
         sendResult(res, getWorkingPins(pins));
     }).fail(function (err) {
         sendError(res, err);
     });
     return;
-    
+
     var tag = req.body;
 
     // db.getPinsByTag(tag).then(function (pins) {
@@ -103,6 +100,7 @@ module.exports.createDB = function (req, res, next) {
         sendError(res, "DB not created:" + err);
     });
 };
+
 function sendResult(res, result) {
     res.status(200).send(result);
 }
