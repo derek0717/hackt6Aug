@@ -3,12 +3,16 @@ var db = require('./db');
 
 module.exports.addPin = function (req, res, next) {
 	var pin = req.body;
-
-	db.addPin(pin).then(function (row) {
-		sendResult(res, row.insertId);
-	}).fail(function (err) {
-		sendError(res, err);
-	});
+	if(checkPin(pin)) {
+		db.addPin(pin).then(function (row) {
+			sendResult(res, row.insertId);
+		}).fail(function (err) {
+			sendError(res, err);
+		});
+	}
+	else {
+		sendError(res, "bad pin");
+	}
 };
 
 module.exports.getPins = function (req, res, next) {
