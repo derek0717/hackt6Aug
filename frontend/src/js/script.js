@@ -49,7 +49,7 @@ CustomMarker.prototype.draw = function() {
 			showPinMessage(this);
 		});
 
-		$(div).html("<div><img src='/images/"+userIdThing+".png' alt=''></img></div>");
+		$(div).html("<div><img src='/images/"+userIdThing+".png' alt='' onerror='this.src=\'images/undefined.png\''></img></div>");
 
 		var panes = this.getPanes();
 		panes.overlayImage.appendChild(div);
@@ -129,32 +129,23 @@ function addPin(lat,lon) {
 
 function addPinFromJSON(singlePin) {
 	//console.log("Add pin: Latitude: " + lat + " Longitude: " + lon);
-	//var myLatlng=new google.maps.LatLng(singlePin.location.lat,singlePin.location.lon);
+	var myLatlng=new google.maps.LatLng(singlePin.location.lat,singlePin.location.lon);
 
 	//var myLatlng=new google.maps.LatLng(22.283636353214973,114.1349458694458);
-
-	/*var marker = new google.maps.Marker({
-		position: myLatlng,
-		title:"added pin"
-	});
-
-	marker.setMap(map);
-	marker.addListener('click', function(e) {
-		markerClick(this.LatLng);
-	});*/
-
-	/*var overlay = new CustomMarker(
+	var overlay = new CustomMarker(
 		myLatlng,
 		map,
 		{
 			pin_id: ''+singlePin.title+'',
 			title: ''+singlePin.title+'',
-			message: ''+singlePin.message+''
+			message: ''+singlePin.message+'',
+			lat:singlePin.location.lat,
+			lon:singlePin.location.lon
 		}
 	);
 	overlay.addListener('click', function(e) {
 		markerClick(this.LatLng);
-	});*/
+	});
 }
 //SHOW PIN MESSAGE
 function showPinMessage(theDiv){
