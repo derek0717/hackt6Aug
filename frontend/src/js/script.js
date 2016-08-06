@@ -39,7 +39,8 @@ CustomMarker.prototype.draw = function() {
 		}
 		var userIdThing;
 		if (typeof(self.args.user_id) !== 'undefined') {
-			div.dataset.userIdThing = self.args.user_id;
+			div.dataset.user_id = self.args.user_id;
+			userIdThing=self.args.user_id;
 		}
 
 		google.maps.event.addDomListener(div, "click", function(event) {
@@ -48,7 +49,7 @@ CustomMarker.prototype.draw = function() {
 			showPinMessage(this);
 		});
 
-		$(div).html("<div><img src='/images/"+userIdThing+".jpg' alt='' onerror='this.src=\'images/undefined.jpg\''></img></div>");
+		this.div.innerHTML="<div><img src='images/"+userIdThing+".jpg' alt='' onerror='this.src=\'images/undefined.jpg\''></img></div>";
 
 		var panes = this.getPanes();
 		panes.overlayImage.appendChild(div);
