@@ -99,12 +99,10 @@ function toggleFormView() {
 
 function addPinFormPopUp (Lat, Lon) {
 	toggleFormView();
-	console.log('HEY I"M MAKING A PIN');
 	$('#newPinButton').on('click', function (e) {
 
 		var Tags = $('#newPinFormTags').val();
 		var tagsArray = Tags.split(',');
-		console.log(tagsArray + "  |  " + Tags);
 		var json = {
 					"title": $('#newPinFormTitle').val(),
 					"message": $('#newPinFormMessage').val(),
@@ -115,5 +113,6 @@ function addPinFormPopUp (Lat, Lon) {
 
 			console.log(json);
 			toggleFormView();
+			push(JSON.stringify(json));
 		});
 };

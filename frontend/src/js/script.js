@@ -183,8 +183,7 @@ function placeMarker(position) {
 	google.maps.event.addListenerOnce(map, 'idle', function(){
 			console.log('this logs after the panTo finishes.');
 			//CALL POPUP FORM HERE
-		console.log(addPinFormPopUp);
-			addPinFormPopUp(position.lat(),position.lng() );
+		addPinFormPopUp(position.lat(),position.lng());
 	});
 
 
