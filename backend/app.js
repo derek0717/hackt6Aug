@@ -32,13 +32,13 @@ app.use(router);
 
 app.use(express.static('../frontend/live-build'));
 
-router.post('/addPin', api.addPin);
-router.get('/getPins', api.getPins);
-router.post('/getPinsByLocation', api.getPinsByLocation);
-router.post('/getPinsByTag', api.getPinsByTag);
-router.post('/likePin', api.likePin);
-router.post('/unlikePin', api.unlikePin);
-router.get('/test', function (req, res, next) {
+router.post('/api/addPin', api.addPin);
+router.get('/api/getPins', api.getPins);
+router.post('/api/getPinsByLocation', api.getPinsByLocation);
+router.post('/api/getPinsByTag', api.getPinsByTag);
+router.post('/api/likePin', api.likePin);
+router.post('/api/unlikePin', api.unlikePin);
+router.get('/api/test', function (req, res, next) {
     res.status(200).send('Test success!!');
 });
 
