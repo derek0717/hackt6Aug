@@ -1,5 +1,5 @@
 Function:
-postPin : null
+addPin : null
 - userId : string
 - title : string
 - content : string

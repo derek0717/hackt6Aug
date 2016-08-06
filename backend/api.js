@@ -1,15 +1,16 @@
 module.exports.getPins = function (req, res, next) {
-console.log('get pin list request' );
+   
+console.log('get pin list request');
+console.log(req);
 var respo = {
 
 }
-res.status(200).send("hi");
+res.status(200).send("JSON.stringify(res)");
 };
 
-module.exports.getPinsByLocation = function (req, res, next) {
-
+module.exports.addPin = function (req, res, next) {
+console.log(req.params);
+res.status(200).send("JSON.stringify(res)");
 };
 
-module.exports.newPin = function (req, res, next) {
-res.status(300);
-};
+
