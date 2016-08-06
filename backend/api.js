@@ -93,3 +93,7 @@ function sendResult (res, result) {
 function sendError (res, message) {
 	res.status(500).send(message);
 }
+
+function checkPin() {
+
+}

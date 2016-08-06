@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(router);
 
 router.post('/addPin', api.addPin);
-router.post('/getPins', api.getPins);
+router.get('/getPins', api.getPins);
 router.post('/getPinsByLocation', api.getPinsByLocation);
 router.post('/getPinsByTag', api.getPinsByTag);
 router.post('/likePin', api.likePin);
