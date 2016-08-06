@@ -1,5 +1,5 @@
 module.exports.getConfig = function () {
-    var isLive = false;
+    var isLive = true;
     if (isLive) {
         return {
             "port": 80,
