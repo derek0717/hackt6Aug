@@ -1,3 +1,5 @@
+
+//LOAD CURRENT POSITION
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -5,10 +7,14 @@ function getLocation() {
         console.log = "Geolocation is not supported by this browser.";
     }
 }
+
+//SHOW CURRENT POSITION
 function showPosition(position) {
     var x = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
     console.log(x);
 }
+
+//MAP INITIALIZATION
 function initialize() {
   var mapProp = {
     center:new google.maps.LatLng(22.286918099999998,114.1494163),
