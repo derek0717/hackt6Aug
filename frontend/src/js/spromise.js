@@ -91,28 +91,29 @@ $(document).on("keypress", function (e) {
 //hides form if clicked outside form
 $('#formBackground').on('click', function (e) {toggleFormView()});
 
-function toggleFormView () {
+function toggleFormView() {
 	$('#addPinFormWrap').toggleClass('hide');
 	$('#formBackground').toggleClass('hide');
-}
+};
 
 
 function addPinFormPopUp (Lat, Lon) {
 	toggleFormView();
+	console.log('HEY I"M MAKING A PIN');
 	$('#newPinButton').on('click', function (e) {
 
-		var Tags = $('#newPinFormTags').value;
+		var Tags = $('#newPinFormTags').val();
 		var tagsArray = Tags.split(',');
 		console.log(tagsArray + "  |  " + Tags);
 		var json = {
-					"title": $('#newPinFormTitle').value,
-					"message": $('#newPinFormMessage').value,
+					"title": $('#newPinFormTitle').val(),
+					"message": $('#newPinFormMessage').val(),
 					"location": {"lat":Lat,"lon":Lon},
 					"tags": tagsArray,
 					"user_id": "test-user1" //MUST BE CHANGED WITH USER ID
 			};
 
 			console.log(json);
+			toggleFormView();
 		});
-		toggleFormView();
 };
