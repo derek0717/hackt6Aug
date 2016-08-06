@@ -105,7 +105,7 @@ function addPinFormPopUp (Lat, Lon) {
 					"message": $('#newPinFormMessage').val(),
 					"location": {"lat":Lat,"lon":Lon},
 					"tags": tagsArray,
-					"user_id": "test-user1" //MUST BE CHANGED WITH USER ID
+					"user_id": $('newPinFormID').val() //MUST BE CHANGED WITH USER ID
 			};
 
 			$('#newPinFormTags').val('');
@@ -114,5 +114,13 @@ function addPinFormPopUp (Lat, Lon) {
 			console.log(json);
 			toggleFormView();
 			push(JSON.stringify(json));
+			GlobalPinsJSON.push(json);
+			addPinFromJSON(json);
 		});
 };
+
+///FOR DEV OF PINS
+//
+$('#betaTestImg').on('click', function () {
+	$('#betaTestFieldWrap').toggleClass('visible');
+})
