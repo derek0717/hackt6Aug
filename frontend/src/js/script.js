@@ -24,9 +24,15 @@ CustomMarker.prototype.draw = function() {
 		if (typeof(self.args.pin_id) !== 'undefined') {
 			div.dataset.pin_id = self.args.pin_id;
 		}
+		if (typeof(self.args.title) !== 'undefined') {
+			div.dataset.title = self.args.title;
+		}
+		if (typeof(self.args.message) !== 'undefined') {
+			div.dataset.message = self.args.message;
+		}
 		
 		google.maps.event.addDomListener(div, "click", function(event) {			
-			google.maps.event.trigger(self, "click");
+			//google.maps.event.trigger(self, "click");
 			event.stopPropagation();
 			console.log(this);
 		});
@@ -133,8 +139,7 @@ function markerClick(latLng){
 }
 
 //READ JSON AND CREATE ALL PINS
-function readJsonAndCreateAllPins(x){
-	justThePins=x.pins;
+function readJsonAndCreateAllPins(justThePins){
 	for(var i=0,l=justThePins.length;i<l;i++) {
 			 //console.log(d[i].location);
 			 addNewPin(justThePins[i].location.lat,justThePins[i].location.lon);
