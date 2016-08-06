@@ -46,23 +46,23 @@ module.exports.getPinsByLocation = function (req, res, next) {
 module.exports.getPinsByTag = function (req, res, next) {
 	var tag = params.body;
 	
-	db.getPinsByTag(tag).then(function (pins) {
-		sendResult(res, getWorkingPins(pins));
-	}).fail(function (err) {
-		sendError(res, err);
-	});
-	// db.getPins().then(function (allPins) {
-	//     var resultPins = [];
-	//     for (var i = 0; i < allPins.length; i++) {
-	//         var pin = allPins[i];
-	//         if (pin.tags.indexOf(tag) > -1) {
-	//             resultPins.push(pin);
-	//         }
-	//     }
-	//     sendResult(res, resultPins);
+	// db.getPinsByTag(tag).then(function (pins) {
+	// 	sendResult(res, getWorkingPins(pins));
 	// }).fail(function (err) {
-	//     sendError(res, err);
+	// 	sendError(res, err);
 	// });
+	db.getPins().then(function (allPins) {
+	    var resultPins = [];
+	    for (var i = 0; i < allPins.length; i++) {
+	        var pin = allPins[i];
+	        if (pin.tags.indexOf(tag) > -1) {
+	            resultPins.push(pin);
+	        }
+	    }
+	    sendResult(res, getWorkingPins(pins));
+	}).fail(function (err) {
+	    sendError(res, err);
+	});
 };
 module.exports.likePin = function (req, res, next) {
 	var params = req.body;
