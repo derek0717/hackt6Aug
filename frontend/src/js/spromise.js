@@ -6,7 +6,7 @@ var testPin1 = {"title":"title1", "message":"some text here.","location":{"lat":
 		{"title":"this is a title", "message":"Doe","location":{"lat":22.280181510711184,"lon":114.15121078491211},"tags":["A","B","C"],"user_id":"user1"},
 		{"title":"John", "message":"Doe","location":{"lat":22.290545782110424,"lon":114.14709091186523},"tags":["A","B","C"],"user_id":"user2"},*/
 
-var theMainURL = "http://192.168.11.179:8888";
+var theMainURL = "/api";
 // -> /getPins returns an array of pins
 
 function get(url) {
@@ -73,7 +73,7 @@ function addtoJSON () {
 //});
 
 $(document).on("keypress", function (e) {
-		console.log(e.which);
+//		console.log(e.which);
 		switch(e.which) {
 			case 112:
 						push(testPin1);
@@ -82,28 +82,37 @@ $(document).on("keypress", function (e) {
 		}
 })
 
-$('#formBackground').on('click', function (e) {
-	$('#addPinFormWrap').addClass('hide');
-	$('#formBackground').addClass('hide');
-});
+
+
+
 
 ///FORM SUBMISSION
 //
-var testNewPin;
-$('#newPinButton').on('click', function (e) {
-	$("#addPinForm").each( function(){
-		var json = {};
-		$(this).find("input").each( function(){
-				var input = {};
+//hides form if clicked outside form
+$('#formBackground').on('click', function (e) {toggleFormView()});
 
-				$.each(this.attributes, function(){
-						if(this.specified){
-								input[this.name] = this.value;
-						}
-				});
-				json.form.push(input);
+function toggleFormView () {
+	$('#addPinFormWrap').toggleClass('hide');
+	$('#formBackground').toggleClass('hide');
+}
+
+
+function addPinFormPopUp (Lat, Lon) {
+	toggleFormView();
+	$('#newPinButton').on('click', function (e) {
+
+		var Tags = $('#newPinFormTags').value;
+		var tagsArray = Tags.split(',');
+		console.log(tagsArray + "  |  " + Tags);
+		var json = {
+					"title": $('#newPinFormTitle').value,
+					"message": $('#newPinFormMessage').value,
+					"location": {"lat":Lat,"lon":Lon},
+					"tags": tagsArray,
+					"user_id": "test-user1" //MUST BE CHANGED WITH USER ID
+			};
+
+			console.log(json);
 		});
-		console.log(json);
-	});
-	$('#addPinFormWrap').addClass('hide');
-})
+		toggleFormView();
+};

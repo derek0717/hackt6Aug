@@ -19,8 +19,8 @@
 				<div class="popup-title"></div>
 				<div class="popup-message"></div>
 			</div>
-			<div id="formBackground"></div>
-			<div id="addPinFormWrap">
+			<div id="formBackground hide"></div>
+			<div id="addPinFormWrap hide">
 					<form action="" id="addPinForm">
 						<div class="pinFormTitleWrap">
 							<h1 class="pinFormTitle">Add a Print</h1>
@@ -28,17 +28,17 @@
 						<div class="formItems">
 							<div class="formItemTitle">
 								<p>Title:</p>
-								<input type="text" name="title">
+								<input id="newPinFormTitle" type="text" name="title">
 							</div>
 							<div class="formTags">
 								<p>Tags:</p>
-								<input type="text" name="tags">
+								<input id="newPinFormTags" type="text" name="tags">
 							</div>
 							<div class="formMessage">
 								<div class="messageTitle">
 									<p>Message Info:</p>
 								</div>
-								<div class="messageText"><input type="text" maxlength="512" name="message"></div>
+								<div class="messageText"><input id="newPinFormMessage" type="text" maxlength="512" name="message"></div>
 							</div>
 							<div class="formImg"></div>
 						</div>
