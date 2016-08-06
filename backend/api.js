@@ -44,7 +44,7 @@ module.exports.getPinsByLocation = function (req, res, next) {
     });
 }
 module.exports.getPinsByTag = function (req, res, next) {
-    var tag = params.body;
+    var tag = getPinsByTag.body;
 
     // db.getPinsByTag(tag).then(function (pins) {
     // 	sendResult(res, getWorkingPins(pins));
@@ -52,15 +52,14 @@ module.exports.getPinsByTag = function (req, res, next) {
     // 	sendError(res, err);
     // });
     db.getPins().then(function (pins) {
-        sendResult(res, getWorkingPins(pins));
-        // var resultPins = [];
-        // for (var i = 0; i < pins.length; i++) {
-        //     var pin = pins[i];
-        //     if (pin.tags.indexOf(tag) > -1) {
-        //         resultPins.push(pin);
-        //     }
-        // }
-        // sendResult(res, getWorkingPins(resultPins));
+        var resultPins = [];
+        for (var i = 0; i < pins.length; i++) {
+            var pin = pins[i];
+            if (pin.tags.indexOf(tag) > -1) {
+                resultPins.push(pin);
+            }
+        }
+        sendResult(res, getWorkingPins(resultPins));
     }).fail(function (err) {
         sendError(res, err);
     });
