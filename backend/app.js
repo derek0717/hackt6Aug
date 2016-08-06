@@ -35,6 +35,9 @@ router.post('/getPinsByLocation', api.getPinsByLocation);
 router.post('/getPinsByTag', api.getPinsByTag);
 router.post('/likePin', api.likePin);
 router.post('/unlikePin', api.unlikePin);
+router.get('/test', function (req, res, next) {
+    res.status(200).send('Test success!!');
+});
 
 var server = require('http').createServer(app);
 server.listen(80);
