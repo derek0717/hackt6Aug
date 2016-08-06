@@ -55,12 +55,11 @@ module.exports.getPinsByTag = function (req, res, next) {
         var resultPins = [];
         for (var i = 0; i < pins.length; i++) {
             var pin = pins[i];
-                resultPins.push(pin.tags.indexOf(tag));
             if (pin.tags.indexOf(tag) > -1) {
                 resultPins.push(pin);
             }
         }
-        sendResult(res, getWorkingPins(pins));
+        sendResult(res, getWorkingPins(resultPins));
     }).fail(function (err) {
         sendError(res, err);
     });
