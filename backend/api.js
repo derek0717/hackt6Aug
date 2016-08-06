@@ -107,7 +107,7 @@ function getWorkingPins (pins) {
 	return workingPins;
 }
 function checkPin(pin) {
-	return pin.userId >= 0
+	return pin.userId
 		&& pin.message
 		&& pin.message
 		&& pin.location
