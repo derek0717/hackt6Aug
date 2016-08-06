@@ -62,7 +62,7 @@ var TEST_DIR = 'test',
 =     JSON          =
 =    for Test       =
 ==========*/
-gulp.task('json-test', function () {
+gulp.task('json-dev', function () {
 		console.log(strt + 'JSON for TEST' + end);
 
 		return gulp.src('src/database/*.json')
@@ -254,7 +254,7 @@ gulp.task('serve:dev', function() {
 	gulp.watch(HTML_PATH, ['html-dev']);
 	gulp.watch(SCSS_PATH, ['sass-dev']);
 	gulp.watch(IMG_PATH, ['images-dev']);
-	gulp.watch('src/database/*.json', ['json-dist']);
+	gulp.watch('src/database/*.json', ['json-dev']);
 
 	browserSync.init({
 	server: {
@@ -263,7 +263,7 @@ gulp.task('serve:dev', function() {
 	}
 	});
 
-	gulp.watch(['test/{*.html,**/*.html}', 'test/**/*.css', 'test/**/*.js', 'test/**/*.{png,jpeg,jpg,gif,svg}','dist/database/*.json]).on('change', browserSync.reload);
+	gulp.watch(['test/{*.html,**/*.html}', 'test/**/*.css', 'test/**/*.js', 'test/**/*.{png,jpeg,jpg,gif,svg}','dist/database/*.json']).on('change', browserSync.reload);
 });
 
 /*============
@@ -282,7 +282,7 @@ gulp.task('clean', function () {
 =      Ready Site     =
 =         Task        =
 =====================*/
-gulp.task('dist', ['html-dist', 'sass-dist', 'scripts-dist', 'images-dist'], function () {
+gulp.task('dist', ['html-dist', 'sass-dist', 'scripts-dist', 'images-dist','json-dist'], function () {
 	console.log('>---- Distribution  folder Created ----<');
 });
 
@@ -308,5 +308,6 @@ gulp.task('default', [
 	'sass-dev',
 	'scripts-dev',
 	'images-dev',
+	'json-dev',
 	'serve:dev'
 ]);
