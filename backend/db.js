@@ -100,7 +100,7 @@ function connect() {
     c.connect({
         host: '127.0.0.1',
         user: 'root',
-        password: '',
+        password: 'toor',
         db: 'zuyin'
     });
     c.on('connect', function () {
