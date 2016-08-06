@@ -166,6 +166,10 @@ function showPinMessage(theDiv){
 		console.log(thisTitle+" "+thisMessage);
 		console.log(theDiv);
 		//console.log(event);
+		var popup=$("#popup-wrap")
+		$(popup).find(".popup-title").text(thisTitle);
+		$(popup).find(".popup-message").text(thisMessage);
+		$("#popup-wrap").fadeIn();
 	});
 
 
