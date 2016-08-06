@@ -18,6 +18,8 @@ module.exports.addPin = function (pin) {
         db: 'zuyin'
     });
 
+
+
     c.on('connect', function() {
         console.log('Client connected');
     })
@@ -28,29 +30,17 @@ module.exports.addPin = function (pin) {
             console.log('Client closed');
         });
 
-    var pq = c.prepare('SELECT * FROM pin WHERE id = :id');
-
-    c.query(pq({ id: 1}))
-        .on('result', function(res) {
-            res.on('row', function(row) {
-                deferred.resolve(row);
-                console.log('Result row: ' + inspect(row));
-            })
-                .on('error', function(err) {
-                    console.log('Result error: ' + inspect(err));
-                    deferred.reject(err);
-                })
-                .on('end', function(info) {
-                    console.log('Result finished successfully');
-                    deferred.reject(info);
-                });
-        })
-        .on('end', function() {
-            console.log('Done with all results');
+    c.query('SELECT * FROM pin WHERE id = :id',
+        { id: 1 },
+        function(err, rows) {
+            if (err)
+                throw err;
+            console.dir(rows);
+            deferred.resolve(rows);
         });
 
-    c.end();
 
+    c.end();
 
 
 
