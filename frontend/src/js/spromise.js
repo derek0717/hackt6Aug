@@ -84,6 +84,7 @@ $(document).on("keypress", function (e) {
 
 $('#formBackground').on('click', function (e) {
 	$('#addPinFormWrap').addClass('hide');
+	$('#formBackground').addClass('hide');
 });
 
 ///FORM SUBMISSION
