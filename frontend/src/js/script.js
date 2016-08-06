@@ -231,6 +231,7 @@ function readJsonAndCreateAllPins(justThePins){
 	for(var i=0,l=justThePins.length;i<l;i++) {
 			 //console.log(d[i].location);
 			 //addNewPin(justThePins[i].location.lat,justThePins[i].location.lon);
+			console.log(justThePins[i]);
 			 addPinFromJSON(justThePins[i]);
 		}
 }
