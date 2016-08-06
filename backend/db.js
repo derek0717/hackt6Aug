@@ -4,7 +4,7 @@ var Client = require('mariasql');
 module.exports.addPin = function (pin) {
 
     var deferred = Q.defer();
-    
+
     execute('INSERT INTO pin (title, name, userId, lat, lon) ' +
         'VALUES (:title, :name, : userId, :lat, :lon)',
         {name: pin.name},
@@ -12,7 +12,7 @@ module.exports.addPin = function (pin) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(rows);
+                deferred.resolve();
             }
         });
 
@@ -27,7 +27,11 @@ module.exports.getPins = function () {
         if (err) {
             deferred.reject(err);
         } else {
-            deferred.resolve(rows);
+            var pins = [];
+            for (var i = 0; i < rows.length; i++) {
+                pins.push(createPin(rows[i]));
+            }
+            deferred.resolve(pins);
         }
     });
 
@@ -46,14 +50,13 @@ module.exports.getPinsByTag = function (tag) {
             deferred.resolve(rows);
         }
     });
-    
-    
+
 
     return deferred.promise;
 };
 
 function getTags() {
-    
+
 }
 
 function getAllPins(cb) {
@@ -97,4 +100,16 @@ function connect() {
             console.log('Client closed');
         });
     return c;
+}
+
+function createPin(row) {
+    var pin = {};
+
+    pin.title = row.title;
+    pin.message = row.message;
+    pin.location = {lat: row.lat, lon: row.lon};
+    pin.tags = [];
+    pin.userId = row.userId;
+
+    return pin;
 }
