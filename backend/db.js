@@ -1,5 +1,7 @@
 var Q = require('q');
 var mongoose = require('mongoose');
+require('mongoose-double')(mongoose);
+var SchemaTypes = mongoose.Schema.Types;
 
 var pinSchema = new mongoose.Schema({
     title: {
@@ -12,11 +14,11 @@ var pinSchema = new mongoose.Schema({
     },
     location: {
         lat: {
-            type: String,
+            type: SchemaTypes.Double,
             index: false
         },
         lon: {
-            type: String,
+            type: SchemaTypes.Double,
             index: false
         }
     },

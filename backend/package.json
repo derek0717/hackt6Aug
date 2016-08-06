@@ -5,9 +5,8 @@
     "body-parser": "^1.15.2",
     "express": "~4.13.4",
     "mongodb": "^2.2.5",
-    "q": "^1.4.1"
-  },
-  "devDependencies": {
+    "mongoose-double": "0.0.1",
+    "q": "^1.4.1",
     "mongoose": "^4.5.8"
   }
 }
