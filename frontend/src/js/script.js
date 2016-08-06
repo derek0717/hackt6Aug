@@ -48,7 +48,7 @@ CustomMarker.prototype.draw = function() {
 			showPinMessage(this);
 		});
 
-		$(div).html("<div><img src='/images/"+userIdThing+".png' alt='' onerror='this.src=\'images/undefined.png\''></img></div>");
+		$(div).html("<div><img src='/images/"+userIdThing+".jpg' alt='' onerror='this.src=\'images/undefined.jpg\''></img></div>");
 
 		var panes = this.getPanes();
 		panes.overlayImage.appendChild(div);
