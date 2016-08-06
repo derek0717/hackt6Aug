@@ -132,7 +132,7 @@ function addPinFormPopUp (Lat, Lon) {
 			$('#newPinFormTags').val('');
 			$('#newPinFormTitle').val('');
 			$('#newPinFormMessage').val('')
-			console.log(json);
+//			console.log(json);
 			push(JSON.stringify(json));
 			GlobalPinsJSON.push(json);
 			addPinFromJSON(json);
