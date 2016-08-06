@@ -17,7 +17,7 @@ CustomMarker.prototype.draw = function() {
 	
 		div = this.div = document.createElement('div');
 		
-		div.className = 'pin';
+		div.className = 'pin tag1';
 		
 		div.style.position = 'absolute';
 		
@@ -36,6 +36,10 @@ CustomMarker.prototype.draw = function() {
 		if (typeof(self.args.lon) !== 'undefined') {
 			div.dataset.lon = self.args.lon;
 		}
+		var userIdThing;
+		if (typeof(self.args.user_id) !== 'undefined') {
+			div.dataset.userIdThing = self.args.user_id;
+		}
 		
 		google.maps.event.addDomListener(div, "click", function(event) {			
 			//google.maps.event.trigger(self, "click");
@@ -43,7 +47,7 @@ CustomMarker.prototype.draw = function() {
 			showPinMessage(this);
 		});
 		
-		$(div).html("<div></div>");
+		$(div).html("<div><img src='/images/"+userIdThing+".jpg' alt=''></img></div>");
 
 		var panes = this.getPanes();
 		panes.overlayImage.appendChild(div);
