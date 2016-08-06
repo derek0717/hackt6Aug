@@ -115,7 +115,7 @@ function placeMarker(position) {
 		position: position,
 		map: map
 	});
-	//map.panTo(position);
+	map.panTo(position);
 	marker.addListener('click', function(e) {
 		markerClick(this.LatLng);
 	});
@@ -125,7 +125,8 @@ function placeMarker(position) {
 		map,
 		{
 			pin_id: '123',
-			colour: 'Red'
+			title: 'Red title',
+			message: 'this is a message'
 		}
 	);
 	overlay.addListener('click', function(e) {
