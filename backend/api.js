@@ -31,14 +31,14 @@ module.exports.getPinsByLocation = function (req, res, next) {
 
     db.getPins().then(function (pins) {
         var resultPins = [];
-        for (var i = 0; i < allPins.length; i++) {
-            var pin = allPins[i];
+        for (var i = 0; i < pins.length; i++) {
+            var pin = pins[i];
             var d = utils.calculateCircleDistance(pin.location, location);
             if (d <= radius) {
                 resultPins.push(pin);
             }
         }
-        sendResult(res, getWorkingPins(pins));
+        sendResult(res, getWorkingPins(resultPins));
     }).fail(function (err) {
         sendError(res, err);
     });
