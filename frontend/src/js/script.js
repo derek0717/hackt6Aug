@@ -47,7 +47,7 @@ CustomMarker.prototype.draw = function() {
 			showPinMessage(this);
 		});
 
-		$(div).html("<div><img src='/images/"+userIdThing+".jpg' alt=''></img></div>");
+		$(div).html("<div><img src='/images/"+userIdThing+".png' alt=''></img></div>");
 
 		var panes = this.getPanes();
 		panes.overlayImage.appendChild(div);
@@ -171,18 +171,19 @@ function showPinMessage(theDiv){
 		$(popup).find(".popup-message").text(thisMessage);
 		$("#popup-wrap").fadeIn();
 	});
-
-
 }
+$("#popup-wrap").on("click",function(){$(this).fadeOut()});
 
-var lastAddPin;
+var lastAddedPin;
 //place marker on map; gets called by click event
 function placeMarker(position) {
+	if (lastAddedPin!=undefined) lastAddedPin.setMap(null);
 	var marker = new google.maps.Marker({
 		position: position,
 		map: map,
 		icon:'images/icon.png'
 	});
+	lastAddedPin=marker;
 	map.panTo(position);
 	google.maps.event.addListenerOnce(map, 'idle', function(){
 			console.log('this logs after the panTo finishes.');
