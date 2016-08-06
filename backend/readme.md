@@ -1,6 +1,6 @@
 #API http://zuyin.tech/
 
-[GET] http://zuyin.tech/api/addPins
+[GET] http://zuyin.tech/api/getPins
 ```json
 [
 {
