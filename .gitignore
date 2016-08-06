@@ -8,7 +8,7 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
-frontend/
+frontend/node_modules/*
 
 # OSX
 *.DS_Store
