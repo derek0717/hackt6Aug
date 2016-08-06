@@ -58,7 +58,27 @@ var TEST_DIR = 'test',
 	TEST_IMG = 'test/images/*.{png,jpeg,jpg,gif,svg}',
 	TEST_AUD = 'dist/audio';
 
+/*==========
+=     JSON          =
+=    for Test       =
+==========*/
+gulp.task('json-test', function () {
+		console.log(strt + 'JSON for TEST' + end);
 
+		return gulp.src('src/database/*.json')
+		.pipe(gulp.dest(TEST_DIR));
+});
+
+/*==========
+=     JSON          =
+=    for DIST       =
+==========*/
+gulp.task('json-dist', function () {
+		console.log(strt + 'JSON for DIST' + end);
+
+		return gulp.src('src/database/*.json')
+		.pipe(gulp.dest(DIST_DIR));
+});
 
 /*============
 =   Styles   =
