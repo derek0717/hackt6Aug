@@ -66,7 +66,7 @@ gulp.task('json-test', function () {
 		console.log(strt + 'JSON for TEST' + end);
 
 		return gulp.src('src/database/*.json')
-		.pipe(gulp.dest(TEST_DIR));
+		.pipe(gulp.dest(TEST_DIR + '/database'));
 });
 
 /*==========
@@ -77,7 +77,7 @@ gulp.task('json-dist', function () {
 		console.log(strt + 'JSON for DIST' + end);
 
 		return gulp.src('src/database/*.json')
-		.pipe(gulp.dest(DIST_DIR));
+		.pipe(gulp.dest(DIST_DIR + '/database'));
 });
 
 /*============
@@ -232,6 +232,7 @@ gulp.task('serve:dist', function() {
 	gulp.watch(HTML_PATH, ['html-dist']);
 	gulp.watch(SCSS_PATH, ['sass-dist']);
 	gulp.watch(IMG_PATH, ['images-dist']);
+	gulp.watch('src/database/*.json', ['json-dist']);
 
 	browserSync.init({
 	server: {
@@ -240,7 +241,7 @@ gulp.task('serve:dist', function() {
 	}
 	});
 
-	gulp.watch(['dist/{*.html,**/*.html}', 'dist/**/*.css', 'dist/**/*.js', 'dist/**/*.{png,jpeg,jpg,gif,svg}']).on('change', browserSync.reload);
+	gulp.watch(['dist/{*.html,**/*.html}', 'dist/**/*.css', 'dist/**/*.js', 'dist/**/*.{png,jpeg,jpg,gif,svg}','dist/database/*.json']).on('change', browserSync.reload);
 });
 
 /*============
@@ -253,6 +254,7 @@ gulp.task('serve:dev', function() {
 	gulp.watch(HTML_PATH, ['html-dev']);
 	gulp.watch(SCSS_PATH, ['sass-dev']);
 	gulp.watch(IMG_PATH, ['images-dev']);
+	gulp.watch('src/database/*.json', ['json-dist']);
 
 	browserSync.init({
 	server: {
@@ -261,7 +263,7 @@ gulp.task('serve:dev', function() {
 	}
 	});
 
-	gulp.watch(['test/{*.html,**/*.html}', 'test/**/*.css', 'test/**/*.js', 'test/**/*.{png,jpeg,jpg,gif,svg}']).on('change', browserSync.reload);
+	gulp.watch(['test/{*.html,**/*.html}', 'test/**/*.css', 'test/**/*.js', 'test/**/*.{png,jpeg,jpg,gif,svg}','dist/database/*.json]).on('change', browserSync.reload);
 });
 
 /*============
