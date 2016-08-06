@@ -52,14 +52,15 @@ module.exports.getPinsByTag = function (req, res, next) {
     // 	sendError(res, err);
     // });
     db.getPins().then(function (pins) {
-        var resultPins = [];
-        for (var i = 0; i < pins.length; i++) {
-            var pin = pins[i];
-            if (pin.tags.indexOf(tag) > -1) {
-                resultPins.push(pin);
-            }
-        }
-        sendResult(res, getWorkingPins(resultPins));
+        sendResult(res, getWorkingPins(pins));
+        // var resultPins = [];
+        // for (var i = 0; i < pins.length; i++) {
+        //     var pin = pins[i];
+        //     if (pin.tags.indexOf(tag) > -1) {
+        //         resultPins.push(pin);
+        //     }
+        // }
+        // sendResult(res, getWorkingPins(resultPins));
     }).fail(function (err) {
         sendError(res, err);
     });
