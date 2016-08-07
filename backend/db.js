@@ -27,7 +27,7 @@ var pinSchema = new mongoose.Schema({
         index: false
     },
     userId: {
-        type: Number,
+        type: String,
         index: false
     },
     likes: {

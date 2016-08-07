@@ -9,7 +9,7 @@ var app = express();
 var router = express.Router();
 
 mongoose.Promise = require('q').Promise;
-mongoose.connect('mongodb://localhost/zuyin');
+mongoose.connect('mongodb://localhost/zuyin1');
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
