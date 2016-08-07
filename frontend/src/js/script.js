@@ -73,13 +73,31 @@ function addPinFromJSON(singlePin) {
 	var myLatlng=new google.maps.LatLng(singlePin.location.lat,singlePin.location.lon);
 
 	//customized marker for demo purpose
-	var these tags=singlePin.tags;
+	var theseTags=singlePin.tags;
+	var gotResult=false,color="3";
+	for (var i=0,j=theseTags.length;i<j;i++) {
+		switch(theseTags[i]){
+			case("food"):color="1";gotResult=true;break;
+			case("wildlife"):color="2";gotResult=true;break;
+			case("hackathons"):color="4";gotResult=true;break;
+			case("events"):color="3";gotResult=true;break;
+			default:;
+		}
+		if (gotResult) break;
+	}
+	switch(singlePin.user_id){
+		case("user1"):color=color+""+1;break;
+		case("user2"):color=color+""+2;break;
+		case("user3"):color=color+""+3;break;
+		default:color=color+""+0;
+	}
 
+	var imagePath="images/"+color+".png";
 	
 	var marker = new google.maps.Marker({
 		position:myLatlng,
 		map:map,
-		icon:'images/icon.png'
+		icon:imagePath
 	});
 	var j={"user_id":singlePin.user_id,
 			"title":singlePin.title,
