@@ -101,7 +101,7 @@ function addPinFromJSON(singlePin) {
         }
         if (gotResult) break;
     }
-    switch (singlePin.user_id) {
+    switch (singlePin.userId) {
         case("user1"):
             color = color + "" + 1;
             break;
@@ -123,7 +123,7 @@ function addPinFromJSON(singlePin) {
         icon: imagePath
     });
     var j = {
-        "user_id": singlePin.user_id,
+        "userId": singlePin.userId,
         "title": singlePin.title,
         "message": singlePin.message,
         "lat": singlePin.location.lat,
