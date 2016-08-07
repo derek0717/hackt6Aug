@@ -70,13 +70,30 @@ body {
 		top: -6px;
 }
 
-.likes-Wrap {
-	float: left;
-	max-width: 30px;
-}
+.social-bar {
+	margin-top:35px;
+	display: flex;
 
-.dislikes-Wrap {
-	max-width: 30px;
+	.likes-Wrap {
+		max-width: 30px;
+		display: flex;
+		margin-right: 10px;
+
+		img {
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	.dislikes-Wrap {
+		max-width: 30px;
+		display: flex;
+
+		img {
+			width: 20px;
+			height: 20px;
+		}
+	}
 }
 
 .popup {
@@ -185,11 +202,13 @@ body {
 		//Button STYLES
 
 	}
+
 	.buttonWrap {
 			position: relative;
 			height: 45px;
+
 			.button {
-				background-color: #4CAF50; /* Green */
+				background-color: #4ba34f; /* Green */
 				position: absolute;
 				border: none;
 				color: white;
@@ -205,6 +224,73 @@ body {
 				border-radius: 10px;
 			}
 		}
-
 }
 
+		///FOOTER
+	//Contains User profiles
+	//
+footer {
+	position: fixed;
+	bottom:0;
+	left: 0;
+	right: 0;
+	height: 45px;
+	background-color: rgba(75, 163, 79, 0.77);
+	border-top-left-radius: 200px;
+	border-top-right-radius: 200px;
+	z-index: 35;
+	transition: height 1.5s, border-top-left-radius 1s, border-top-right-radius 1s;
+}
+
+footer.move {
+	height: 100% !important;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#hamburger-menu {
+		stroke: #fff;
+		width: 100%;
+	#hamburger{
+		margin: 3px auto;
+		width: 40px;
+	}
+}
+
+#mainMenuItems {
+	margin: 20% auto;
+	max-width: 50%;
+	position: relative;
+
+	h2 {
+		font-size: 3em;
+	}
+}
+
+#loginMenu, #alreadyLogged {
+	text-align: center;
+	text-transform: uppercase;
+	position: absolute;
+	transform: translateY(-50%);
+	top: 50%;
+	width: 100%;
+	color: #fff;
+}
+
+#loginMenu.hide, #alreadyLogged.hide {
+	opacity: 0;
+	z-index:-200;
+}
+
+#profilePage {
+	position: absolute;
+	width: 92%;
+	background-color: #fff;
+	transform: translate(-50%, 150%);
+	left: 50%;
+	transition: transform 1.5s;
+}
+
+#profilePage.show {
+	transform: translate(-50%, 100%);
+}

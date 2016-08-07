@@ -25,7 +25,7 @@
 					</div>
 					<div class="dislikes-Wrap">
 						<img class="dislikes-img" src="images/facebook-dislike-icon.png" alt="dislikes Img" />
-						<p id="theLikes">4</p>
+						<p id="theDisLikes">-4</p>
 					</div>
 				</div>
 			</div>
@@ -71,8 +71,78 @@
 					</form>
 			</div>
 
-		<footer></footer>
+		<footer id="footer">
+			<div id="hamburger-menu">
+				<div id="hamburger">
+				 <svg id="hamburger" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="0 0 38 33.7" enable-background="new 0 0 38 33.7" xml:space="preserve">
+					<g>
+						<line fill="none"  stroke-width="4" stroke-miterlimit="10" x1="1.5" y1="30.7" x2="36.5" y2="30.7"/>
+						<line fill="none"  stroke-width="4" stroke-miterlimit="10" x1="1.5" y1="20.2" x2="36.5" y2="20.2"/>
+						<g>
+							<path fill="none"  stroke-width="4" stroke-miterlimit="10" d="M2.7,12.7C2.7,7.3,10,3,19,3"/>
+							<path fill="none" stroke-width="4" stroke-miterlimit="10" d="M35.3,12.7C35.3,7.3,28,3,19,3"/>
+						</g>
+					</g>
+				</svg>
+				</div>
+			</div>
+			<div id="mainMenuItems">
+				<div id="loginMenu" class="hide">
+					<h2 id="loginButton">LOGIN</h2>
+				</div>
+				<div id="alreadyLogged">
+					<h2 id="profileButton">PROFILE</h2>
+					<h2 id="logOutButton">LOGOUT</h2>
+				</div>
+			</div>
+			<div id="profilePage">
+				<div id="userInfo">
+					<div id="userPicWrap">
+						<img src="images/user3.jpg" alt="user 3 Profile Pic"/>
+					</div>
+					<div id="userTitleWrap">
+						<div id="userTitle">Johnathan</div>
+						<div id="userRating">
+							<img src="" alt=""/>
+						</div>
+					</div>
+				</div>
+				<div id="favorites">
+					<h2>Favorited Tags</h2>
+					<ul id="favoriteList">
+						<li>FOOD</li>
+						<li>EVENTS</li>
+						<li>WILDLIFE</li>
+						<li>CELEBRITIES</li>
+						<li>HIKE</li>
+						<li>HACKATHONS</li>
+						<li>LOST-CODERS</li>
+					</ul>
+
+				</div>
+			</div>
+
+		</footer>
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 		<script src="js/all.js"></script>
+		<script>
+			$('#hamburger-menu').on('click', function () {
+				$('#footer').toggleClass('move');
+			});
+			$('#loginButton').on('click', function () {
+				$('#loginMenu').toggleClass('hide');
+				$('#alreadyLogged').toggleClass('hide');
+			})
+			$('#logOutButton').on('click', function () {
+				$('#loginMenu').toggleClass('hide');
+				$('#alreadyLogged').toggleClass('hide');
+			});
+			$('#profileButton').on('click', function () {
+				$('#alreadyLogged').toggleClass('hide');
+				$('#profilePage').toggleClass('show');
+
+			})
+		</script>
 	</body>
 </html>
