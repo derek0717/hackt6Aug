@@ -3,90 +3,91 @@ var apiPath = "http://zuyin.tech/api";
 
 
 function get(url) {
-    return new Promise(function (resolve, reject) {
-        getRequest(url, function (result) {
-            if (result.status == 200) {
-                resolve(result.responseText);
-            }
-            else {
-                reject(Error(result));
-            }
-        });
-    });
+		return new Promise(function (resolve, reject) {
+				getRequest(url, function (result) {
+						if (result.status == 200) {
+								resolve(result.responseText);
+						}
+						else {
+								reject(Error(result));
+						}
+				});
+		});
 }
 
 function postPin(pin) {
-    return new Promise(function (resolve, reject) {
-        postRequest(apiPath + "/addPin", pin, function (result) {
-            if (result.status == 200) {
-                resolve(result.responseText);
-            }
-            else {
-                reject(Error(result.statusText));
-            }
-        });
-    });
+		return new Promise(function (resolve, reject) {
+				postRequest(apiPath + "/addPin", pin, function (result) {
+						if (result.status == 200) {
+								resolve(result.responseText);
+						}
+						else {
+								reject(Error(result.statusText));
+						}
+				});
+		});
 }
 
 function getPins(callback) {
-    getRequest(apiPath + "/getPins", function (result) {
-        if (result.status == 200) {
-            callback(JSON.parse(result.responseText));
-        }
-        else {
-            reject(Error(result.statusText));
-        }
-    });
+		getRequest(apiPath + "/getPins", function (result) {
+				if (result.status == 200) {
+						callback(JSON.parse(result.responseText));
+				}
+				else {
+						reject(Error(result.statusText));
+				}
+		});
 }
 
 ///FORM SUBMISSION
 //
 //hides form if clicked outside form
 $('#formBackground').on('click', function (e) {
-    $('#addPinFormWrap').addClass('hide');
-    $('#formBackground').addClass('hide');
+		$('#addPinFormWrap').addClass('hide');
+		$('#formBackground').addClass('hide');
 });
 
 function toggleFormView() {
-    $('#addPinFormWrap').toggleClass('hide');
-    $('#formBackground').toggleClass('hide');
+		$('#addPinFormWrap').toggleClass('hide');
+		$('#formBackground').toggleClass('hide');
 };
 var formCoord = {"lat": 0, "lon": 0};
 
 function addPinFormPopUp(Lat, Lon) {
-    $('#addPinFormWrap').removeClass('hide');
-    $('#formBackground').removeClass('hide');
+		$('#addPinFormWrap').removeClass('hide');
+		$('#formBackground').removeClass('hide');
 
-    formCoord.lat = Lat;
-    formCoord.lon = Lon;
+		formCoord.lat = Lat;
+		formCoord.lon = Lon;
 }
 
 $('#newPinButton').on('click', function (e) {
-    var Lat = formCoord.lat;
-    var Lon = formCoord.lon;
+		var Lat = formCoord.lat;
+		var Lon = formCoord.lon;
 
-    var Tags = $('#newPinFormTags').val();
-    var tagsArray = Tags.split(',');
-    var newPin = {
-        "title": $('#newPinFormTitle').val(),
-        "message": $('#newPinFormMessage').val(),
-        "location": {"lat": Lat, "lon": Lon},
-        "tags": tagsArray,
-        "user_id": $('#newPinFormID').val() //MUST BE CHANGED WITH USER ID
-    };
-    $('#addPinFormWrap').addClass('hide');
-    $('#formBackground').addClass('hide');
-    $('#newPinFormTags').val('');
-    $('#newPinFormTitle').val('');
-    $('#newPinFormMessage').val('')
+		var Tags = $('#newPinFormTags').val();
+		var tagsArray = Tags.split(',');
+		var newPin = {
+				"title": $('#newPinFormTitle').val(),
+				"message": $('#newPinFormMessage').val(),
+				"location": {"lat": Lat, "lon": Lon},
+				"tags": tagsArray,
+				"userId": $('#newPinFormID').val() //MUST BE CHANGED WITH USER ID
+		};
+		$('#addPinFormWrap').addClass('hide');
+		$('#formBackground').addClass('hide');
+		$('#newPinFormTags').val('');
+		$('#newPinFormTitle').val('');
+		$('#newPinFormMessage').val('');
+		$('#newPinFormID').val('');
 
-    postPin(newPin);
-    GlobalPinsJSON.push(newPin);
-    addPinFromJSON(newPin);
+		postPin(newPin);
+		GlobalPinsJSON.push(newPin);
+		addPinFromJSON(newPin);
 });
 
 ///FOR DEV OF PINS
 //
 $('#betaTestImg').on('click', function () {
-    $('#betaTestFieldWrap').toggleClass('visible');
+		$('#betaTestFieldWrap').toggleClass('visible');
 });
