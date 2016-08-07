@@ -2,19 +2,6 @@
 var apiPath = "http://zuyin.tech/api";
 
 
-function get(url) {
-    return new Promise(function (resolve, reject) {
-        getRequest(url, function (result) {
-            if (result.status == 200) {
-                resolve(result.responseText);
-            }
-            else {
-                reject(Error(result));
-            }
-        });
-    });
-}
-
 function postPin(pin) {
     return new Promise(function (resolve, reject) {
         postRequest(apiPath + "/addPin", pin, function (result) {
