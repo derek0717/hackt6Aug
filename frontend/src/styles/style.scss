@@ -259,7 +259,7 @@ footer.move {
 }
 
 #mainMenuItems {
-	margin: 20% auto;
+	margin: 35% auto;
 	max-width: 50%;
 	position: relative;
 
@@ -290,8 +290,23 @@ footer.move {
 	transform: translate(-50%, 150%);
 	left: 50%;
 	transition: transform 1.5s;
+
+	#userInfo {
+		display: flex;
+
+		#userPicWrap{
+			margin: 5px;
+		}
+
+		h2 {
+			font-size: 3em;
+			text-transform: uppercase;
+			font-weight: 600;
+			margin: 5% 0;
+		}
+	}
 }
 
 #profilePage.show {
-	transform: translate(-50%, 100%);
+	transform: translate(-50%, 20%);
 }
