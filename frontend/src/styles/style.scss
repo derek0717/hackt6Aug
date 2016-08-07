@@ -97,7 +97,7 @@ body {
 }
 
 .popup {
-		width: 90vw;
+		width: 50vw;
 		background-color: #fff;
 		height: calc(50vh - 110px);
 		margin: 1em auto;
@@ -113,6 +113,7 @@ body {
 
 .popup-message {
 		padding: 10px 0;
+		min-height:80px;
 }
 
 ///
@@ -252,6 +253,7 @@ footer.move {
 #hamburger-menu {
 		stroke: #fff;
 		width: 100%;
+		cursor:pointer;
 	#hamburger{
 		margin: 3px auto;
 		width: 40px;
@@ -265,6 +267,11 @@ footer.move {
 
 	h2 {
 		font-size: 3em;
+		cursor:pointer;
+		translate: text-shadow .2s;
+	}
+	h2:hover{
+		text-shadow: 0 0 5px rgba(0,0,0,0.6);
 	}
 }
 
@@ -287,8 +294,9 @@ footer.move {
 #profilePage {
 	position: absolute;
 	width: 92%;
-	background-color: #fff;
-	transform: translate(-50%, 150%);
+	background-color: rgba(255,255,255,0.6);
+	border-radius: 5px 5px 0 0;
+	transform: translate(-50%, 250%);
 	left: 50%;
 	transition: transform 1.5s;
 
@@ -300,7 +308,7 @@ footer.move {
 		}
 
 		h2 {
-			font-size: 3em;
+			font-size: 2.1em;
 			text-transform: uppercase;
 			font-weight: 600;
 			margin: 5% 0;
@@ -309,5 +317,7 @@ footer.move {
 }
 
 #profilePage.show {
-	transform: translate(-50%, 20%);
+	transform: translate(-50%, -20%);
 }
+
+#favoriteList{columns:2;}
