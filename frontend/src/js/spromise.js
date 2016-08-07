@@ -1,5 +1,5 @@
-var apiPath = "http://localhost:8888/api";
-//var apiPath = "http://zuyin.tech/api";
+
+var apiPath = "http://zuyin.tech/api";
 
 
 function get(url) {
@@ -31,7 +31,7 @@ function postPin(pin) {
 function getPins(callback) {
     getRequest(apiPath + "/getPins", function (result) {
         if (result.status == 200) {
-            callback(result.responseText);
+            callback(JSON.parse(result.responseText));
         }
         else {
             reject(Error(result.statusText));
