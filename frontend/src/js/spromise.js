@@ -1,4 +1,3 @@
-
 var apiPath = "http://zuyin.tech/api";
 
 
@@ -85,7 +84,9 @@ $('#newPinButton').on('click', function (e) {
         "message": $('#newPinFormMessage').val(),
         "location": {"lat": Lat, "lon": Lon},
         "tags": tagsArray,
-        "user_id": $('#newPinFormID').val() //MUST BE CHANGED WITH USER ID
+        "userId": $('#newPinFormID').val(),
+        "like": 0,
+        "dislike": 0
     };
     $('#addPinFormWrap').addClass('hide');
     $('#formBackground').addClass('hide');
