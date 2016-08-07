@@ -1,5 +1,5 @@
-var apiPath = "http://localhost:8888/api";
-//var apiPath = "http://zuyin.tech/api";
+//var apiPath = "http://localhost:8888/api";
+var apiPath = "http://zuyin.tech/api";
 
 
 function get(url) {
@@ -40,32 +40,39 @@ function toggleFormView() {
     $('#addPinFormWrap').toggleClass('hide');
     $('#formBackground').toggleClass('hide');
 };
+var formCoord={"lat":0,"lon":0};
 
 function addPinFormPopUp(Lat, Lon) {
     $('#addPinFormWrap').removeClass('hide');
     $('#formBackground').removeClass('hide');
-    $('#newPinButton').on('click', function (e) {
 
-        var Tags = $('#newPinFormTags').val();
-        var tagsArray = Tags.split(',');
-        var newPin = {
-            "title": $('#newPinFormTitle').val(),
-            "message": $('#newPinFormMessage').val(),
-            "location": {"lat": Lat, "lon": Lon},
-            "tags": tagsArray,
-            "user_id": $('#newPinFormID').val() //MUST BE CHANGED WITH USER ID
-        };
-        $('#addPinFormWrap').addClass('hide');
-        $('#formBackground').addClass('hide');
-        $('#newPinFormTags').val('');
-        $('#newPinFormTitle').val('');
-        $('#newPinFormMessage').val('')
-
-        postPin(newPin);
-        GlobalPinsJSON.push(newPin);
-        addPinFromJSON(newPin);
-    });
+    formCoord.lat=Lat;
+    formCoord.lon=Lon;
 }
+
+$('#newPinButton').on('click', function (e) {
+    var Lat=formCoord.lat;
+    var Lon=formCoord.lon;
+    
+    var Tags = $('#newPinFormTags').val();
+    var tagsArray = Tags.split(',');
+    var newPin = {
+        "title": $('#newPinFormTitle').val(),
+        "message": $('#newPinFormMessage').val(),
+        "location": {"lat": Lat, "lon": Lon},
+        "tags": tagsArray,
+        "user_id": $('#newPinFormID').val() //MUST BE CHANGED WITH USER ID
+    };
+    $('#addPinFormWrap').addClass('hide');
+    $('#formBackground').addClass('hide');
+    $('#newPinFormTags').val('');
+    $('#newPinFormTitle').val('');
+    $('#newPinFormMessage').val('')
+
+    postPin(newPin);
+    GlobalPinsJSON.push(newPin);
+    addPinFromJSON(newPin);
+});
 
 ///FOR DEV OF PINS
 //
