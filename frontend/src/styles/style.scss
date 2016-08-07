@@ -131,7 +131,7 @@ body {
 }
 
 #addPinFormWrap.hide {
-	top: 150%;
+	top: -150%;
 	z-index: -30;
 }
 
@@ -141,7 +141,7 @@ body {
 		z-index: 10;
 		top: 5%;
 		left: 5%;
-		transition: top 1.5s ease-out;
+		transition: top 0.8s ease-out;
 
 	#addPinForm {
 		position: absolute;
