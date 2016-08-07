@@ -70,6 +70,7 @@ function showPosition(position) {
 
 function addPinFromJSON(singlePin) {
 
+    console.log(singlePin);
 
     //console.log("Add pin: Latitude: " + lat + " Longitude: " + lon);
     var myLatlng = new google.maps.LatLng(singlePin.location.lat, singlePin.location.lon);
