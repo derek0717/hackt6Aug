@@ -41,16 +41,17 @@
 								<p>Title:</p>
 								<input id="newPinFormTitle" type="text" name="title">
 							</div>
-							<div class="formTags">
-								<p>Tags:</p>
-								<input id="newPinFormTags" type="text" name="tags">
-							</div>
 							<div class="formMessage">
 								<div class="messageTitle">
 									<p>Message Info:</p>
 								</div>
 								<div class="messageText"><input id="newPinFormMessage" type="text" maxlength="512" name="message"></div>
 							</div>
+							<div class="formTags">
+								<p>Tags:</p>
+								<input id="newPinFormTags" type="text" name="tags">
+							</div>
+
 							<div class="beta-testing">
 									<img id="betaTestImg" src="images/plus-sign.gif" alt="plus-sign" />
 									<p>Beta Testing Field</p>
@@ -119,7 +120,6 @@
 						<li>HACKATHONS</li>
 						<li>LOST-CODERS</li>
 					</ul>
-
 				</div>
 			</div>
 
@@ -129,6 +129,10 @@
 		<script>
 			$('#hamburger-menu').on('click', function () {
 				$('#footer').toggleClass('move');
+				if ($('#profilePage').hasClass('show')) {
+						$('#profilePage').toggleClass('show');
+						$('#alreadyLogged').toggleClass('hide');
+				}
 			});
 			$('#loginButton').on('click', function () {
 				$('#loginMenu').toggleClass('hide');
