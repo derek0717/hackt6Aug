@@ -20,6 +20,7 @@ function postRequest(url, data, cb) {
 
 function createCORSRequest(method, url) {
     var xhr = new XMLHttpRequest();
+
     if ("withCredentials" in xhr) {
         xhr.open(method, url, true);
     } else if (typeof XDomainRequest != "undefined") {
@@ -28,5 +29,9 @@ function createCORSRequest(method, url) {
     } else {
         xhr = null;
     }
+    if (xhr) {
+        xhr.setRequestHeader("Content-Type", "application/json");
+    }
+
     return xhr;
 }

@@ -115,8 +115,7 @@ function getWorkingPins(pins) {
 }
 
 function checkPin(pin) {
-    return pin.userId
-        && pin.title
+    return pin.title
         && pin.message
         && pin.location
         && pin.location.lat
