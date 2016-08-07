@@ -129,10 +129,6 @@
 		<script>
 			$('#hamburger-menu').on('click', function () {
 				$('#footer').toggleClass('move');
-				if ($('#profilePage').hasClass('show')){
-					$('#profilePage').toggleClass('show');
-					$('#alreadyLogged').toggleClass('hide');
-				}
 			});
 			$('#loginButton').on('click', function () {
 				$('#loginMenu').toggleClass('hide');
@@ -145,7 +141,6 @@
 			$('#profileButton').on('click', function () {
 				$('#alreadyLogged').toggleClass('hide');
 				$('#profilePage').toggleClass('show');
-
 			})
 		</script>
 	</body>
