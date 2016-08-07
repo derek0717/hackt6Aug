@@ -69,6 +69,8 @@ function showPosition(position) {
  }*/
 
 function addPinFromJSON(singlePin) {
+
+
     //console.log("Add pin: Latitude: " + lat + " Longitude: " + lon);
     var myLatlng = new google.maps.LatLng(singlePin.location.lat, singlePin.location.lon);
 
@@ -167,6 +169,8 @@ function placeMarker(position) {
     //CALL POPUP FORM HERE
     addPinFormPopUp(position.lat(), position.lng());
     //});
+
+
 }
 
 
@@ -184,7 +188,12 @@ function initialize() {
         placeMarker(e.latLng, map);
     });
     getLocation();
-    loadPins();
+
+
+    google.maps.event.addListenerOnce(map, 'idle', function () {
+        loadPins();
+    });
+
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -195,5 +204,4 @@ function loadPins() {
             addPinFromJSON(pins[i]);
         }
     })
-
 }
