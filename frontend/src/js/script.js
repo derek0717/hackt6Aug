@@ -146,6 +146,7 @@ function showPinMessage(j) {
 		$(popup).find(".popup-message").text(j.message);
 		$(popup).find("#theLikes").text(j.likes);
 		$(popup).find("#theDisLikes").text(j.dislikes);
+		$(popup).find("#popup-ID").text(j.userID);
 		$("#popup-wrap").fadeIn();
 		//});
 }
