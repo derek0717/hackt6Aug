@@ -141,6 +141,7 @@ body {
 		z-index: 10;
 		top: 5%;
 		left: 5%;
+		transition: top 1.5s ease-out;
 
 	#addPinForm {
 		position: absolute;
@@ -236,8 +237,8 @@ footer {
 	right: 0;
 	height: 45px;
 	background-color: rgba(75, 163, 79, 0.77);
-	border-top-left-radius: 50px;
-	border-top-right-radius: 50px;
+	border-top-left-radius: 200px;
+	border-top-right-radius: 200px;
 	z-index: 35;
 	transition: height 1.5s, border-top-left-radius 1s, border-top-right-radius 1s;
 }
@@ -275,11 +276,9 @@ footer.move {
 	top: 50%;
 	width: 100%;
 	color: #fff;
-	transition: opacity 0.5s;
 }
 
 #loginMenu.hide, #alreadyLogged.hide {
-	transition: opacity 0;
 	opacity: 0;
 	z-index:-200;
 }
@@ -288,12 +287,11 @@ footer.move {
 	position: absolute;
 	width: 92%;
 	background-color: #fff;
-	transform: translate(-50%, 250%);
+	transform: translate(-50%, 150%);
 	left: 50%;
 	transition: transform 1.5s;
-	box-shadow: 0 3px 5px #888;
 }
 
 #profilePage.show {
-	transform: translate(-50%, 0%);
+	transform: translate(-50%, 100%);
 }
