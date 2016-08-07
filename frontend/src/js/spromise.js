@@ -1,19 +1,4 @@
-
 var apiPath = "http://zuyin.tech/api";
-
-
-function get(url) {
-    return new Promise(function (resolve, reject) {
-        getRequest(url, function (result) {
-            if (result.status == 200) {
-                resolve(result.responseText);
-            }
-            else {
-                reject(Error(result));
-            }
-        });
-    });
-}
 
 function postPin(pin) {
     return new Promise(function (resolve, reject) {
@@ -36,6 +21,32 @@ function getPins(callback) {
         else {
             reject(Error(result.statusText));
         }
+    });
+}
+
+function likePin(pin) {
+    return new Promise(function (resolve, reject) {
+        postRequest(apiPath + "/likePin", {"pinId": pin._id}, function (result) {
+            if (result.status == 200) {
+                resolve(result.responseText);
+            }
+            else {
+                reject(Error(result.statusText));
+            }
+        });
+    });
+}
+
+function dislikePin(pin) {
+    return new Promise(function (resolve, reject) {
+        postRequest(apiPath + "/dislikePin", {"pinId": pin._id}, function (result) {
+            if (result.status == 200) {
+                resolve(result.responseText);
+            }
+            else {
+                reject(Error(result.statusText));
+            }
+        });
     });
 }
 
