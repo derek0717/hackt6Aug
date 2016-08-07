@@ -2,7 +2,7 @@ function getRequest(url, cb) {
     var request = createCORSRequest("GET", url);
     if (request) {
         request.onload = function () {
-            cb(request.responseText);
+            cb(request);
         };
         request.send();
     }
@@ -12,7 +12,7 @@ function postRequest(url, data, cb) {
     var request = createCORSRequest("POST", url);
     if (request) {
         request.onload = function () {
-            cb(request.responseText);
+            cb(request);
         };
         request.send(JSON.stringify(data));
     }

@@ -1,15 +1,15 @@
-//var apiPath = "http://localhost:8888/api";
-var apiPath = "http://zuyin.tech/api";
+var apiPath = "http://localhost:8888/api";
+//var apiPath = "http://zuyin.tech/api";
 
 
 function get(url) {
     return new Promise(function (resolve, reject) {
         getRequest(url, function (result) {
-            if (req.status == 200) {
-                resolve(result.response);
+            if (result.status == 200) {
+                resolve(result.responseText);
             }
             else {
-                reject(Error(result.statusText));
+                reject(Error(result));
             }
         });
     });
@@ -19,12 +19,23 @@ function postPin(pin) {
     return new Promise(function (resolve, reject) {
         postRequest(apiPath + "/addPin", pin, function (result) {
             if (result.status == 200) {
-                resolve(req.response);
+                resolve(result.responseText);
             }
             else {
                 reject(Error(result.statusText));
             }
         });
+    });
+}
+
+function getPins(callback) {
+    getRequest(apiPath + "/getPins", function (result) {
+        if (result.status == 200) {
+            callback(result.responseText);
+        }
+        else {
+            reject(Error(result.statusText));
+        }
     });
 }
 
@@ -40,20 +51,20 @@ function toggleFormView() {
     $('#addPinFormWrap').toggleClass('hide');
     $('#formBackground').toggleClass('hide');
 };
-var formCoord={"lat":0,"lon":0};
+var formCoord = {"lat": 0, "lon": 0};
 
 function addPinFormPopUp(Lat, Lon) {
     $('#addPinFormWrap').removeClass('hide');
     $('#formBackground').removeClass('hide');
 
-    formCoord.lat=Lat;
-    formCoord.lon=Lon;
+    formCoord.lat = Lat;
+    formCoord.lon = Lon;
 }
 
 $('#newPinButton').on('click', function (e) {
-    var Lat=formCoord.lat;
-    var Lon=formCoord.lon;
-    
+    var Lat = formCoord.lat;
+    var Lon = formCoord.lon;
+
     var Tags = $('#newPinFormTags').val();
     var tagsArray = Tags.split(',');
     var newPin = {
